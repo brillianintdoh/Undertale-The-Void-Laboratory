@@ -9,13 +9,13 @@ MainNode::~MainNode() {}
 
 void MainNode::_bind_methods() {
     ClassDB::bind_method(D_METHOD("ready"), &MainNode::ready);
+    ClassDB::bind_method(D_METHOD("set_global"), &MainNode::set_global);
 }
 
 void MainNode::ready() {
     ResourceLoader* loader = ResourceLoader::get_singleton();
     dialogues = loader->load("res://Resources/Dialogues/dialogues.gd");
     m = Object::cast_to<MainNode>(get_node_internal("."));
-    global = Object::cast_to<CanvasLayer>(get_node_internal("/root/Global"));
 }
 
 void MainNode::_process(double delta) {
@@ -24,4 +24,8 @@ void MainNode::_process(double delta) {
 
 Variant MainNode::dia() {
     return dialogues->new_();
+}
+
+void MainNode::set_global() {
+    global = Object::cast_to<CanvasLayer>(get_node_internal("/root/Global"));
 }
