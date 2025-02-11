@@ -24,7 +24,7 @@ namespace godot {
 
             Variant dia();
 
-            void set_global();
+            void load_global();
             void ready();
             void _process(double delta) override;
     };

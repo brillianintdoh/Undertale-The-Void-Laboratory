@@ -9,7 +9,7 @@ MainNode::~MainNode() {}
 
 void MainNode::_bind_methods() {
     ClassDB::bind_method(D_METHOD("ready"), &MainNode::ready);
-    ClassDB::bind_method(D_METHOD("set_global"), &MainNode::set_global);
+    ClassDB::bind_method(D_METHOD("load_global"), &MainNode::load_global);
 }
 
 void MainNode::ready() {
@@ -26,6 +26,6 @@ Variant MainNode::dia() {
     return dialogues->new_();
 }
 
-void MainNode::set_global() {
+void MainNode::load_global() {
     global = Object::cast_to<CanvasLayer>(get_node_internal("/root/Global"));
 }
