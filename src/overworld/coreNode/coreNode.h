@@ -12,8 +12,7 @@ namespace godot {
             CoreNode();
             ~CoreNode();
 
-            void _ready() override;
-            void _process(double delta) override;
+            void voidWall();
     };
 }
 

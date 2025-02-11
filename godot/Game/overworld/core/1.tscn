@@ -1,0 +1,139 @@
+[gd_scene load_steps=14 format=3 uid="uid://b1n5sd4yphw2l"]
+
+[ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_fm3ux"]
+[ext_resource type="Texture2D" uid="uid://c2b3j7vl1dxw6" path="res://Game/assets/img/core.png" id="2_6ch78"]
+[ext_resource type="PackedScene" uid="uid://d4g7r4oj7f4t8" path="res://Overworld/Characters/player_overworld.tscn" id="3_a6maq"]
+[ext_resource type="Script" path="res://Resources/Encounters/Encounter.gd" id="4_gq4uh"]
+[ext_resource type="PackedScene" uid="uid://gyhc83v53iax" path="res://Overworld/Interactions/save.tscn" id="5_iewme"]
+[ext_resource type="Script" path="res://Camera/camera.gd" id="6_nenxh"]
+[ext_resource type="PackedScene" uid="uid://c8yexn6trfd1f" path="res://Game/text_trigger.tscn" id="7_dwxo3"]
+[ext_resource type="Script" path="res://Overworld/room_entrance_node.gd" id="8_2yq8u"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_qq5qj"]
+
+[sub_resource type="Resource" id="Resource_cukce"]
+script = ExtResource("4_gq4uh")
+encounter_name = &"Encounter"
+background = SubResource("ImageTexture_qq5qj")
+enemies = Array[PackedScene]([])
+mercy_options = Array[String](["* Spare", "* Flee"])
+flee_chance = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyurj"]
+size = Vector2(71, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1bia"]
+size = Vector2(215, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxlin"]
+size = Vector2(215, 82)
+
+[node name="core_1" type="Node2D" node_paths=PackedStringArray("room_entrances")]
+script = ExtResource("1_fm3ux")
+world_name = "핫랜드 - 코어 갈림길"
+player_path = NodePath("player")
+room_entrances = [NodePath("trigger/room2"), NodePath("trigger/room3"), NodePath("trigger/room4")]
+
+[node name="image" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(328.85, 238.602)
+scale = Vector2(1.2, 1.02655)
+texture = ExtResource("2_6ch78")
+region_enabled = true
+region_rect = Rect2(2344, 968, 400, 256)
+metadata/_edit_lock_ = true
+
+[node name="Save" parent="." instance=ExtResource("5_iewme")]
+position = Vector2(320, 240)
+
+[node name="camera" type="RemoteTransform2D" parent="Save"]
+script = ExtResource("6_nenxh")
+zoom = Vector2(2, 2)
+
+[node name="player" parent="." instance=ExtResource("3_a6maq")]
+z_index = 1
+position = Vector2(320, 221)
+Encounters = Array[ExtResource("4_gq4uh")]([SubResource("Resource_cukce")])
+
+[node name="static" type="StaticBody2D" parent="."]
+position = Vector2(321, 251)
+
+[node name="1" type="CollisionShape2D" parent="static"]
+position = Vector2(0.5, 111)
+shape = SubResource("RectangleShape2D_cyurj")
+
+[node name="2" type="CollisionShape2D" parent="static"]
+position = Vector2(144.5, -65.5)
+shape = SubResource("RectangleShape2D_n1bia")
+
+[node name="4" type="CollisionShape2D" parent="static"]
+position = Vector2(142, 70)
+shape = SubResource("RectangleShape2D_xxlin")
+
+[node name="5" type="CollisionShape2D" parent="static"]
+position = Vector2(-143, 69)
+shape = SubResource("RectangleShape2D_xxlin")
+
+[node name="3" type="CollisionShape2D" parent="static"]
+position = Vector2(-142.5, -65.5)
+shape = SubResource("RectangleShape2D_n1bia")
+
+[node name="trigger" type="Node2D" parent="."]
+position = Vector2(23, 23)
+
+[node name="text_trigger" parent="trigger" instance=ExtResource("7_dwxo3")]
+position = Vector2(213, 210)
+scale = Vector2(2, 1)
+text = ["* ( 더이상 읽을 필요 없다 )"]
+
+[node name="text_trigger2" parent="trigger" instance=ExtResource("7_dwxo3")]
+position = Vector2(382, 210)
+scale = Vector2(2, 1)
+text = ["* ( 더이상 읽을 필요 없다 )"]
+
+[node name="room2" type="ReferenceRect" parent="trigger"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 141.0
+offset_top = 213.0
+offset_right = 147.0
+offset_bottom = 257.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(19, 22)
+script = ExtResource("8_2yq8u")
+facing_direction = Vector2(1, 0)
+door_id = 2
+new_room = "res://Game/overworld/core/2.tscn"
+
+[node name="room3" type="ReferenceRect" parent="trigger"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 445.0
+offset_top = 213.0
+offset_right = 451.0
+offset_bottom = 257.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(-16, 21)
+script = ExtResource("8_2yq8u")
+facing_direction = Vector2(-1, 0)
+door_id = 3
+new_room = "res://Game/overworld/core/3.tscn"
+
+[node name="room4" type="ReferenceRect" parent="trigger"]
+offset_left = 261.0
+offset_top = 117.0
+offset_right = 334.0
+offset_bottom = 123.0
+pivot_offset = Vector2(36, 22)
+script = ExtResource("8_2yq8u")
+facing_direction = Vector2(0, 1)
+door_id = 4
+new_room = "res://Game/overworld/core/4.tscn"

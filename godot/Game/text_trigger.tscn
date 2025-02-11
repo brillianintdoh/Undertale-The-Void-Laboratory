@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8yexn6trfd1f"]
+
+[ext_resource type="Script" path="res://Singletons/text_trigger.gd" id="1_wm53u"]
+[ext_resource type="PackedScene" uid="uid://d34ncxu853v44" path="res://Overworld/Interactions/interaction_trigger.tscn" id="2_v58kh"]
+
+[node name="text_trigger" type="Node2D"]
+script = ExtResource("1_wm53u")
+
+[node name="trigger" parent="." instance=ExtResource("2_v58kh")]
+
+[connection signal="interacted" from="trigger" to="." method="_on_interact_area_interacted"]

@@ -1,0 +1,117 @@
+[gd_scene load_steps=10 format=3 uid="uid://dc10754oip7a4"]
+
+[ext_resource type="Theme" uid="uid://s3o3wkvbt3ej" path="res://Themes/DTMono24.tres" id="1_aygu1"]
+[ext_resource type="Script" path="res://Singletons/global.gd" id="1_n7axi"]
+[ext_resource type="AudioStream" uid="uid://bw8viuufk2elm" path="res://sfx/heal.wav" id="2_752qb"]
+[ext_resource type="Script" path="res://Resources/Items/Item.gd" id="2_hl63a"]
+
+[sub_resource type="Resource" id="Resource_08wbk"]
+script = ExtResource("2_hl63a")
+item_type = 1
+item_name = "막대기"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* You used the Item!"]
+item_information = ["* Item - Heals 0 hp 
+* This means this item has no description or is the default item."]
+throw_message = ["* You threw the Item!"]
+heal_amount = 0
+attack_amount = 1
+defense_amount = 0
+
+[sub_resource type="Resource" id="Resource_uar4h"]
+script = ExtResource("2_hl63a")
+item_type = 2
+item_name = "반창고"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* You used the Item!"]
+item_information = ["* Item - Heals 0 hp 
+* This means this item has no description or is the default item."]
+throw_message = ["* You threw the Item!"]
+heal_amount = 0
+attack_amount = 0
+defense_amount = 1
+
+[sub_resource type="Resource" id="Resource_p5cqk"]
+script = ExtResource("2_hl63a")
+item_type = 0
+item_name = "파이"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* 당신은 파이를 사용했다"]
+item_information = ["* 파이중에 한조각", "* 버터스카치 시나몬 파이 한 조각이다. - 체력 999 회복"]
+throw_message = ["* 파이를 버렸다"]
+heal_amount = 999
+attack_amount = 0
+defense_amount = 0
+
+[sub_resource type="Resource" id="Resource_1h2q8"]
+script = ExtResource("2_hl63a")
+item_type = 0
+item_name = "컵라면"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* 당신은 컵라면를 사용했다.
+* 생으로 먹는 것이 더 낫다"]
+item_information = ["* 컵라면 그냥 평법한 컵라면 이다 - 체력 90 회복"]
+throw_message = ["* 라면을 버렸다"]
+heal_amount = 90
+attack_amount = 0
+defense_amount = 0
+
+[sub_resource type="Resource" id="Resource_kqj2e"]
+script = ExtResource("2_hl63a")
+item_type = 0
+item_name = "크로케 롤"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* 당신은 <error>를 사용했다"]
+item_information = ["* <error>"]
+throw_message = ["* 를 버렸다"]
+heal_amount = 200
+attack_amount = 0
+defense_amount = 0
+
+[node name="GlobalNode" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_n7axi")
+item_list = Array[ExtResource("2_hl63a")]([SubResource("Resource_08wbk"), SubResource("Resource_uar4h"), SubResource("Resource_p5cqk"), SubResource("Resource_1h2q8"), SubResource("Resource_kqj2e")])
+
+[node name="Info" type="RichTextLabel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_aygu1")
+bbcode_enabled = true
+
+[node name="heal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_752qb")
+bus = &"SFX"
+
+[node name="KrTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="MusicGlobal" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+bus = &"Music"
+
+[connection signal="timeout" from="KrTimer" to="." method="_on_kr_tick"]

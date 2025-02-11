@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://qcnlewk1syle"]
+
+[ext_resource type="Script" path="res://Singletons/overworld_scene_changer.gd" id="1_r30f2"]
+
+[node name="OverworldSceneChanger" type="CanvasLayer"]
+layer = 9
+script = ExtResource("1_r30f2")
+default_scene = "res://Game/overworld/core/5.tscn"
