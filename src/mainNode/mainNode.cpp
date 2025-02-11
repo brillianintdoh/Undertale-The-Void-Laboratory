@@ -16,7 +16,6 @@ void MainNode::ready() {
     dialogues = loader->load("res://Resources/Dialogues/dialogues.gd");
     m = Object::cast_to<MainNode>(get_node_internal("."));
     global = Object::cast_to<CanvasLayer>(get_node_internal("/root/Global"));
-    cout << global->get_name().to_utf8_buffer().get_string_from_utf8().utf8().get_data() << endl;
 }
 
 void MainNode::_process(double delta) {
