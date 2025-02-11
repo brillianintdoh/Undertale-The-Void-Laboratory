@@ -1,5 +1,8 @@
 #include "globalNode.h"
 #include "globalNode-type.h"
+#include<gdextension_interface.h>
+#include<godot_cpp/core/defs.hpp>
+#include<godot_cpp/godot.hpp>
 
 void globalNode_init(ModuleInitializationLevel p_level) {
     if(p_level != MODULE_INITIALIZATION_LEVEL_SCENE) return;
