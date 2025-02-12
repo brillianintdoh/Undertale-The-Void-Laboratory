@@ -23,8 +23,10 @@ namespace godot {
             void loop(function<int(double delta)> fun);
 
             Variant dia();
+            Dictionary flags();
 
             void load_global();
+            void set_flag(String name, Variant v);
             void ready();
             void _process(double delta) override;
     };

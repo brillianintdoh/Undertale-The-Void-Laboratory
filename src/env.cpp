@@ -1,4 +1,4 @@
 #include "env.h"
 
-MainNode* m = nullptr;
+MainNode* sys = nullptr;
 CanvasLayer* global = nullptr;

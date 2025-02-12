@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgs3k783ju2ei"]
+
+[ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_6cwhx"]
+[ext_resource type="Texture2D" uid="uid://c2b3j7vl1dxw6" path="res://Game/assets/img/core.png" id="2_il84y"]
+[ext_resource type="Script" path="res://Camera/camera.gd" id="3_sox77"]
+[ext_resource type="PackedScene" uid="uid://d4g7r4oj7f4t8" path="res://Overworld/Characters/player_overworld.tscn" id="4_mwjv5"]
+[ext_resource type="Script" path="res://Resources/Encounters/Encounter.gd" id="5_ga2o6"]
+[ext_resource type="Script" path="res://Overworld/room_entrance_node.gd" id="7_o4i60"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_qq5qj"]
+
+[sub_resource type="Resource" id="Resource_cukce"]
+script = ExtResource("5_ga2o6")
+encounter_name = &"Encounter"
+background = SubResource("ImageTexture_qq5qj")
+enemies = Array[PackedScene]([])
+mercy_options = Array[String](["* Spare", "* Flee"])
+flee_chance = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n61ts"]
+size = Vector2(172, 106)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n616l"]
+size = Vector2(139, 251)
+
+[node name="core_8" type="Node2D" node_paths=PackedStringArray("room_entrances")]
+script = ExtResource("1_6cwhx")
+world_name = "core_8"
+player_path = NodePath("player")
+room_entrances = [NodePath("trigger/room2"), NodePath("trigger/room7"), NodePath("trigger/room8")]
+
+[node name="image" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(320, 240)
+scale = Vector2(1.2, 1.02655)
+texture = ExtResource("2_il84y")
+region_enabled = true
+region_rect = Rect2(2075, 525.331, 319, 248.669)
+metadata/_edit_lock_ = true
+
+[node name="camera" type="RemoteTransform2D" parent="image"]
+scale = Vector2(0.833333, 0.974137)
+script = ExtResource("3_sox77")
+zoom = Vector2(2, 2)
+
+[node name="player" parent="." instance=ExtResource("4_mwjv5")]
+z_index = 1
+position = Vector2(308, 289)
+Encounters = Array[ExtResource("5_ga2o6")]([SubResource("Resource_cukce")])
+
+[node name="trigger" type="Node2D" parent="."]
+position = Vector2(23, 23)
+
+[node name="room2" type="ReferenceRect" parent="trigger"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 241.0
+offset_top = 321.0
+offset_right = 319.0
+offset_bottom = 327.0
+grow_horizontal = 2
+scale = Vector2(0.96, 1)
+pivot_offset = Vector2(40.0417, -14)
+script = ExtResource("7_o4i60")
+facing_direction = Vector2(0, -1)
+door_id = 2
+new_room = "res://Game/overworld/core/2.tscn"
+new_room_entrance_id = 8
+
+[node name="room7" type="ReferenceRect" parent="trigger"]
+offset_left = 450.0
+offset_top = 196.0
+offset_right = 455.0
+offset_bottom = 248.0
+pivot_offset = Vector2(-17, 25)
+script = ExtResource("7_o4i60")
+facing_direction = Vector2(-1, 0)
+door_id = 7
+new_room = "res://Game/overworld/core/7.tscn"
+new_room_entrance_id = 8
+
+[node name="room8" type="ReferenceRect" parent="trigger"]
+offset_left = 244.0
+offset_top = 100.0
+offset_right = 317.0
+offset_bottom = 106.0
+pivot_offset = Vector2(36, 22)
+script = ExtResource("7_o4i60")
+facing_direction = Vector2(0, 1)
+door_id = 9
+new_room = "res://Game/overworld/core/9.tscn"
+new_room_entrance_id = 8
+
+[node name="static" type="StaticBody2D" parent="."]
+
+[node name="1" type="CollisionShape2D" parent="static"]
+position = Vector2(426, 318)
+shape = SubResource("RectangleShape2D_n61ts")
+
+[node name="2" type="CollisionShape2D" parent="static"]
+position = Vector2(425.5, 168.5)
+shape = SubResource("RectangleShape2D_n61ts")
+
+[node name="4" type="CollisionShape2D" parent="static"]
+position = Vector2(199.5, 239.5)
+shape = SubResource("RectangleShape2D_n616l")

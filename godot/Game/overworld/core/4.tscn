@@ -28,7 +28,7 @@ size = Vector2(145, 246)
 script = ExtResource("1_qw7n6")
 world_name = "core_4"
 player_path = NodePath("player")
-room_entrances = [NodePath("trigger/room"), NodePath("trigger/room3")]
+room_entrances = [NodePath("trigger/room"), NodePath("trigger/room3"), NodePath("trigger/room7")]
 
 [node name="image" type="Sprite2D" parent="."]
 z_index = -1
@@ -85,16 +85,28 @@ door_id = 3
 new_room = "res://Game/overworld/core/3.tscn"
 new_room_entrance_id = 4
 
+[node name="room7" type="ReferenceRect" parent="trigger"]
+offset_left = 248.0
+offset_top = 113.0
+offset_right = 323.0
+offset_bottom = 121.0
+pivot_offset = Vector2(37, 23)
+script = ExtResource("7_cb8p2")
+facing_direction = Vector2(0, 1)
+door_id = 7
+new_room = "res://Game/overworld/core/7.tscn"
+new_room_entrance_id = 4
+
 [node name="static" type="StaticBody2D" parent="."]
 
 [node name="1" type="CollisionShape2D" parent="static"]
 position = Vector2(427.5, 332.5)
 shape = SubResource("RectangleShape2D_n61ts")
 
-[node name="3" type="CollisionShape2D" parent="static"]
-position = Vector2(200.5, 241)
-shape = SubResource("RectangleShape2D_n616l")
-
 [node name="2" type="CollisionShape2D" parent="static"]
 position = Vector2(427.5, 167.5)
 shape = SubResource("RectangleShape2D_n61ts")
+
+[node name="3" type="CollisionShape2D" parent="static"]
+position = Vector2(200.5, 241)
+shape = SubResource("RectangleShape2D_n616l")

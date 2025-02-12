@@ -12,7 +12,10 @@ namespace godot {
             CoreNode();
             ~CoreNode();
 
+            void init();
             void voidWall();
+            void event1();
+            void text_trigger1();
     };
 }
 

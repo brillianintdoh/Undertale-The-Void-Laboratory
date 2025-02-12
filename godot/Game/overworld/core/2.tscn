@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://2apq8qgje4i8"]
+[gd_scene load_steps=14 format=3 uid="uid://2apq8qgje4i8"]
 
 [ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_s0q1w"]
 [ext_resource type="Texture2D" uid="uid://c2b3j7vl1dxw6" path="res://Game/assets/img/core.png" id="2_7upy2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Resources/Encounters/Encounter.gd" id="6_h2hkt"]
 [ext_resource type="PackedScene" uid="uid://c8yexn6trfd1f" path="res://Game/text_trigger.tscn" id="7_738vw"]
 [ext_resource type="Script" path="res://Overworld/room_entrance_node.gd" id="7_m3hs4"]
+[ext_resource type="PackedScene" uid="uid://dd758xuvic7xl" path="res://Overworld/Interactions/area_trigger.tscn" id="8_awyks"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_qq5qj"]
 
@@ -21,17 +22,17 @@ flee_chance = 0.2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n61ts"]
 size = Vector2(20, 242)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhc54"]
-size = Vector2(71, 9)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n616l"]
 size = Vector2(120, 99)
 
-[node name="core_2" type="Node2D" node_paths=PackedStringArray("room_entrances")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhc54"]
+size = Vector2(71, 9)
+
+[node name="core_2" type="CoreNode" node_paths=PackedStringArray("room_entrances")]
 script = ExtResource("1_s0q1w")
 world_name = "core_2"
 player_path = NodePath("player")
-room_entrances = [NodePath("trigger/room")]
+room_entrances = [NodePath("trigger/room"), NodePath("trigger/room8")]
 
 [node name="image" type="Sprite2D" parent="."]
 z_index = -1
@@ -58,7 +59,7 @@ position = Vector2(23, 23)
 [node name="text_trigger" parent="trigger" instance=ExtResource("7_738vw")]
 position = Vector2(163, 194)
 scale = Vector2(2, 1)
-text = ["* ( 이 퍼즐을 풀 필요가 없다 )"]
+text = ["* ( 이 퍼즐은 이미 풀었다 )"]
 
 [node name="room" type="ReferenceRect" parent="trigger"]
 anchors_preset = 5
@@ -76,25 +77,40 @@ facing_direction = Vector2(0, -1)
 new_room = "res://Game/overworld/core/1.tscn"
 new_room_entrance_id = 2
 
+[node name="room8" type="ReferenceRect" parent="trigger"]
+offset_left = 235.0
+offset_top = 117.0
+offset_right = 308.0
+offset_bottom = 123.0
+pivot_offset = Vector2(36, 22)
+script = ExtResource("7_m3hs4")
+facing_direction = Vector2(0, 1)
+door_id = 8
+new_room = "res://Game/overworld/core/8.tscn"
+new_room_entrance_id = 2
+
+[node name="voidwall" parent="trigger" instance=ExtResource("8_awyks")]
+position = Vector2(139, 226)
+scale = Vector2(0.3, 3)
+action = 14
+
 [node name="static" type="StaticBody2D" parent="."]
 
 [node name="1" type="CollisionShape2D" parent="static"]
 position = Vector2(340, 242)
 shape = SubResource("RectangleShape2D_n61ts")
 
-[node name="3" type="CollisionShape2D" parent="static"]
-position = Vector2(294.5, 120)
-shape = SubResource("RectangleShape2D_nhc54")
-
-[node name="4" type="CollisionShape2D" parent="static"]
+[node name="2" type="CollisionShape2D" parent="static"]
 position = Vector2(198, 315.5)
 shape = SubResource("RectangleShape2D_n616l")
 
-[node name="5" type="CollisionShape2D" parent="static"]
+[node name="3" type="CollisionShape2D" parent="static"]
 position = Vector2(198, 174.5)
 shape = SubResource("RectangleShape2D_n616l")
 
-[node name="6" type="CollisionShape2D" parent="static"]
+[node name="4" type="CollisionShape2D" parent="static"]
 position = Vector2(157, 244)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_nhc54")
+
+[connection signal="cutscene" from="trigger/voidwall" to="." method="voidWall"]

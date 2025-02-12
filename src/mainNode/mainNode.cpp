@@ -15,7 +15,7 @@ void MainNode::_bind_methods() {
 void MainNode::ready() {
     ResourceLoader* loader = ResourceLoader::get_singleton();
     dialogues = loader->load("res://Resources/Dialogues/dialogues.gd");
-    m = Object::cast_to<MainNode>(get_node_internal("."));
+    sys = Object::cast_to<MainNode>(get_node_internal("."));
 }
 
 void MainNode::_process(double delta) {
@@ -24,6 +24,15 @@ void MainNode::_process(double delta) {
 
 Variant MainNode::dia() {
     return dialogues->new_();
+}
+
+Dictionary MainNode::flags() {
+    return global->get("flags");
+}
+
+void MainNode::set_flag(String name, Variant v) {
+    global->call("set_flag", name, v);
+    global->call("save_game", true);
 }
 
 void MainNode::load_global() {
