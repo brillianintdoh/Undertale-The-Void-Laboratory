@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc10754oip7a4"]
+[gd_scene load_steps=13 format=3 uid="uid://dc10754oip7a4"]
 
 [ext_resource type="Theme" uid="uid://s3o3wkvbt3ej" path="res://Themes/DTMono24.tres" id="1_aygu1"]
 [ext_resource type="Script" path="res://Singletons/global.gd" id="1_n7axi"]
@@ -46,7 +46,8 @@ weapon_bars = 1
 weapon_type = 0
 critical_hits = false
 use_message = ["* 당신은 파이를 사용했다"]
-item_information = ["* 파이중에 한조각", "* 버터스카치 시나몬 파이 한 조각이다. - 체력 999 회복"]
+item_information = ["* 파이 - 체력 999 회복
+* 파이중에 한조각", "* 버터스카치 시나몬 파이 한 조각이다."]
 throw_message = ["* 파이를 버렸다"]
 heal_amount = 999
 attack_amount = 0
@@ -55,20 +56,69 @@ defense_amount = 0
 [sub_resource type="Resource" id="Resource_1h2q8"]
 script = ExtResource("2_hl63a")
 item_type = 0
-item_name = "컵라면"
+item_name = "눈사람 조각"
 weapon_speed = 1.0
 weapon_bars = 1
 weapon_type = 0
 critical_hits = false
-use_message = ["* 당신은 컵라면를 사용했다.
-* 생으로 먹는 것이 더 낫다"]
-item_information = ["* 컵라면 그냥 평법한 컵라면 이다 - 체력 90 회복"]
-throw_message = ["* 라면을 버렸다"]
-heal_amount = 90
+use_message = ["* 당신은 눈사람 조각를 사용했다."]
+item_information = ["* 시나몬버니 - 체력 22 회복
+* 토끼 모양의 시나몬롤이다."]
+throw_message = ["* 시나몬버니를 버렸다"]
+heal_amount = 45
 attack_amount = 0
 defense_amount = 0
 
 [sub_resource type="Resource" id="Resource_kqj2e"]
+script = ExtResource("2_hl63a")
+item_type = 0
+item_name = "꿈"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* 당신은 꿈을 사용했다"]
+item_information = ["* 꿈 - 체력 17 회복
+* '의지'의 목적"]
+throw_message = ["* 꿈를 버렸다"]
+heal_amount = 17
+attack_amount = 0
+defense_amount = 0
+
+[sub_resource type="Resource" id="Resource_hhcrm"]
+script = ExtResource("2_hl63a")
+item_type = 0
+item_name = "감자칩"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* 당신은 감자칩을 사용했다"]
+item_information = ["* 감자칩 -  13hp 회복 
+* 별 특징 없는 오래된 감자칩이다"]
+throw_message = ["* 당신은 감자칩을 버렸다"]
+heal_amount = 13
+attack_amount = 0
+defense_amount = 0
+
+[sub_resource type="Resource" id="Resource_xu28o"]
+script = ExtResource("2_hl63a")
+item_type = 0
+item_name = "전설의 영웅"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* 당신은 전설의 영웅을 사용했다"]
+item_information = ["* 전설의 영웅 - 40hp 회복
+* 검 모양 샌드위치. 먹으면 공격력 향상.
+"]
+throw_message = ["* 당신은 전설의 영웅을 버렸다"]
+heal_amount = 40
+attack_amount = 4
+defense_amount = 0
+
+[sub_resource type="Resource" id="Resource_qshho"]
 script = ExtResource("2_hl63a")
 item_type = 0
 item_name = "크로케 롤"
@@ -76,10 +126,11 @@ weapon_speed = 1.0
 weapon_bars = 1
 weapon_type = 0
 critical_hits = false
-use_message = ["* 당신은 <error>를 사용했다"]
-item_information = ["* <error>"]
+use_message = ["* 를 사용했다"]
+item_information = ["*  - 15 hp 회복
+* 전통적으로 타구망치와 같이 제공되는 튀김 도넛."]
 throw_message = ["* 를 버렸다"]
-heal_amount = 200
+heal_amount = 15
 attack_amount = 0
 defense_amount = 0
 
@@ -87,7 +138,7 @@ defense_amount = 0
 process_mode = 3
 layer = 10
 script = ExtResource("1_n7axi")
-item_list = Array[ExtResource("2_hl63a")]([SubResource("Resource_08wbk"), SubResource("Resource_uar4h"), SubResource("Resource_p5cqk"), SubResource("Resource_1h2q8"), SubResource("Resource_kqj2e")])
+item_list = Array[ExtResource("2_hl63a")]([SubResource("Resource_08wbk"), SubResource("Resource_uar4h"), SubResource("Resource_p5cqk"), SubResource("Resource_1h2q8"), SubResource("Resource_kqj2e"), SubResource("Resource_hhcrm"), SubResource("Resource_xu28o"), SubResource("Resource_qshho")])
 
 [node name="Info" type="RichTextLabel" parent="."]
 anchors_preset = 15
