@@ -72,7 +72,8 @@ void CoreNode::event1() {
 void CoreNode::text_trigger1() {
     call("summontextbox").call("character", TextBox::GASTER, sys->dia().call("from",
         Array::make(
-            String::utf8("I'M SORRY TO SANS, BUT I NEED TO LURE A HUMAN")
+            String::utf8("WHEN TIME AND SPACE BECOME ONE..."),
+            String::utf8("ALL SUFFERING WILL CEASE TO EXIST...")
         )
     ));
     sys->loop([this](double delta) {
