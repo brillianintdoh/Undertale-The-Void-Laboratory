@@ -16,6 +16,22 @@ void MainNode::loop(function<int(double delta)> fun) {
     isLoop = true;
 }
 
+void MainNode::sequence(function<int()> isFun, vector<function<void()>> funs) {
+    loop([this, funs, isFun](double delta) {
+        static size_t current_index = 0;
+        
+        if (isFun()) {
+            if (current_index < funs.size()) {
+                funs[current_index]();
+                current_index++;
+                return false;
+            }
+            current_index = 0;  // 리셋
+            return true;  // 모든 액션 완료
+        }else return false;
+    });
+}
+
 void MainNode::system(double delta) {
     int i1 = 0;
     for(auto fun : sleepFuns) {

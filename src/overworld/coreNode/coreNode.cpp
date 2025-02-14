@@ -1,5 +1,6 @@
 #include "coreNode.h"
 #include "../../env.h"
+#include<godot_cpp/classes/character_body2d.hpp>
 
 CoreNode::CoreNode() {}
 
@@ -13,15 +14,82 @@ void CoreNode::_bind_methods() {
 }
 
 void CoreNode::init() {
-    int event1 = sys->flags()["event1"];
-    String name = get("world_name");
+    String name = get_name();
     if(name == "core_9") {
+        int event1 = sys->flags()["event1"];
         if(!event1) return;
         Node* text_trigger = get_node_internal("trigger/text_trigger");
         text_trigger->disconnect("dialogue_finished", Callable(this, "text_trigger1"));
         text_trigger->set("text", Array::make(
             String::utf8("* ( 화면은 더 이상 켜지지 않는다 )")
         ));
+    }else if(name == "core_1") {
+        int main1 = sys->flags()["main1"];
+        if(!main1) return;
+        global->set("player_move", false);
+        CharacterBody2D* sans = Object::cast_to<CharacterBody2D>(get_node_internal("sans"));
+        call("summontextbox").call("generic", sys->dia().call("from",
+            Array::make(
+                String::utf8("* ...."),
+                String::utf8("* ( 당신은 코어 구조부터 모든게 이상하다는것을 느낀다.. )")
+            )
+        ));
+        sys->sequence([this]() { return !global->get("player_text_box"); },
+        {[this, sans]() {
+            global->set("player_text_box", true);
+            sans->set_position(Vector2(321, 356));
+            sans->call("start_walking", Vector2i(0, -1));
+            sys->sleep([this]() { global->set("player_text_box", false); }, 1.3);
+        },
+        [this, sans]() {
+            global->set("player_text_box", true);
+            Vector2 player_pos = global->get("player_position");
+            Vector2 sans_pos = sans->get_position();
+            Vector2 diff = player_pos - sans_pos;
+            Vector2i direction;
+            
+            if (abs(diff.x) > abs(diff.y)) {
+                direction = Vector2i(diff.x > 0 ? 1 : -1, 0);
+            } else {
+                direction = Vector2i(0, diff.y > 0 ? 1 : -1);
+            }  
+            
+            sans->call("start_walking", direction);
+            sans->call("start_walking");
+            sys->sleep([this]() { global->set("player_text_box", false); }, 1);
+        },
+        [this]() {
+            call("summontextbox").call("character", TextBox::SANS, sys->dia().call("from",
+                Array::make(
+                    String::utf8("* 꼬마 여기 있었네.."),
+                    String::utf8("* ..."),
+                    String::utf8("* 날 찾고 있었다고?"),
+                    String::utf8("* 흠...."),
+                    String::utf8("* 뭐 어쩔수 없나.."),
+                    String::utf8("* 너도 느꼈을거야 코어 주변이.. 아니 지하세계가 이상해지고 있는걸"),
+                    String::utf8("* 미안해 내가 '그'를 불러 버렸어"),
+                    String::utf8("* 일단 날 따라와 탈출할 방법을 찾아야겠어")
+                )
+            ).call("set_expressions", Array::make(6, 0, 4, 2, 3, 2, 9, 0)));
+        },
+        [this, sans]() {
+            global->set("player_text_box", true);
+            sans->call("start_walking", Vector2i(0, 1));
+            sys->sleep([this, sans]() {
+                sans->set_position(Vector2(321, 398));
+                global->set("player_text_box", false);
+            }, 1.3);
+        },
+        [this]() {
+            global->set("player_move", true);
+            call("summontextbox").call("generic", sys->dia().call("from",
+                Array::make(
+                    String::utf8("* ...."),
+                    String::utf8("* 무언가.. 느낌이 안 좋다..")
+                )
+            ));
+            sys->set_flag("main1", true);
+        }});
     }
 }
 
@@ -76,21 +144,20 @@ void CoreNode::text_trigger1() {
             String::utf8("ALL SUFFERING WILL CEASE TO EXIST...")
         )
     ));
-    sys->loop([this](double delta) {
-        if(!global->get("player_in_menu")) {
-            call("summontextbox").call("generic", sys->dia().call("from",
-                Array::make(
-                    String::utf8("* ?"),
-                    String::utf8("* 이해 할수 없는 문양이다..")
-                )
-            ));
-            Node* text_trigger = get_node_internal("trigger/text_trigger");
-            text_trigger->disconnect("dialogue_finished", Callable(this, "text_trigger1"));
-            text_trigger->set("text", Array::make(
-                String::utf8("* ( 아까 문자는 뭐였을까..? )")
-            ));
-            sys->set_flag("event1", true);
-            return true;
-        }else return false;
-    });
+    sys->sequence([this]() { return !global->get("player_text_box"); },
+    {[this]() {
+        call("summontextbox").call("generic", sys->dia().call("from",
+            Array::make(
+                String::utf8("* ?"),
+                String::utf8("* 이해 할수 없는 문양이다..")
+            )
+        ));
+
+        Node* text_trigger = get_node_internal("trigger/text_trigger");
+        text_trigger->disconnect("dialogue_finished", Callable(this, "text_trigger1"));
+        text_trigger->set("text", Array::make(
+            String::utf8("* ( 아까 문자는 뭐였을까..? )")
+        ));
+        sys->set_flag("event1", true);
+    }});
 }

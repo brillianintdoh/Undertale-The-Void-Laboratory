@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1n5sd4yphw2l"]
+[gd_scene load_steps=17 format=3 uid="uid://b1n5sd4yphw2l"]
 
 [ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_fm3ux"]
 [ext_resource type="Texture2D" uid="uid://c2b3j7vl1dxw6" path="res://Game/assets/img/core.png" id="2_6ch78"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://c8yexn6trfd1f" path="res://Game/text_trigger.tscn" id="7_dwxo3"]
 [ext_resource type="Script" path="res://Overworld/room_entrance_node.gd" id="8_2yq8u"]
 [ext_resource type="PackedScene" uid="uid://dd758xuvic7xl" path="res://Overworld/Interactions/area_trigger.tscn" id="9_1sh7g"]
+[ext_resource type="PackedScene" uid="uid://bj6e8xllsfsj4" path="res://Overworld/Characters/sans.tscn" id="10_ognhb"]
+[ext_resource type="Script" path="res://Resources/Dialogues/dialogues.gd" id="11_e1oam"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_qq5qj"]
 
@@ -46,6 +48,7 @@ metadata/_edit_lock_ = true
 
 [node name="Save" parent="." instance=ExtResource("5_iewme")]
 position = Vector2(320, 240)
+save_text = Array[String](["* 당신의 여정은 끝나지 않은거 같다", "* 당신은 의지로 가득찬다"])
 
 [node name="camera" type="RemoteTransform2D" parent="Save"]
 script = ExtResource("6_nenxh")
@@ -104,7 +107,7 @@ offset_right = 147.0
 offset_bottom = 257.0
 grow_horizontal = 0
 grow_vertical = 2
-pivot_offset = Vector2(19, 22)
+pivot_offset = Vector2(19, 28)
 script = ExtResource("8_2yq8u")
 facing_direction = Vector2(1, 0)
 door_id = 2
@@ -122,7 +125,7 @@ offset_right = 451.0
 offset_bottom = 257.0
 grow_horizontal = 0
 grow_vertical = 2
-pivot_offset = Vector2(-16, 21)
+pivot_offset = Vector2(-16, 28)
 script = ExtResource("8_2yq8u")
 facing_direction = Vector2(-1, 0)
 door_id = 3
@@ -142,6 +145,12 @@ new_room = "res://Game/overworld/core/4.tscn"
 [node name="voidwall" parent="trigger" instance=ExtResource("9_1sh7g")]
 position = Vector2(299, 332)
 scale = Vector2(4, 0.3)
+required_collider_group = &"player"
 action = 14
 
+[node name="sans" parent="." instance=ExtResource("10_ognhb")]
+position = Vector2(321, 398)
+dialogues = Array[ExtResource("11_e1oam")]([])
+
+[connection signal="ready" from="." to="." method="init"]
 [connection signal="cutscene" from="trigger/voidwall" to="." method="voidWall"]
