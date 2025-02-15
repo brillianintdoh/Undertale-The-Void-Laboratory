@@ -3,4 +3,4 @@
 MainNode* sys = nullptr;
 CanvasLayer* global = nullptr;
 AudioStreamPlayer* music = nullptr;
-int isEditor = false;
+int isEditor = true;

@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://2apq8qgje4i8"]
+[gd_scene load_steps=15 format=3 uid="uid://2apq8qgje4i8"]
 
 [ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_s0q1w"]
 [ext_resource type="Texture2D" uid="uid://c2b3j7vl1dxw6" path="res://Game/assets/img/core.png" id="2_7upy2"]
+[ext_resource type="AudioStream" uid="uid://dfqid7tyfeodc" path="res://Game/assets/audio/core.mp3" id="2_vkt2l"]
 [ext_resource type="Script" path="res://Camera/camera.gd" id="4_3m3cn"]
 [ext_resource type="PackedScene" uid="uid://d4g7r4oj7f4t8" path="res://Overworld/Characters/player_overworld.tscn" id="5_ruywh"]
 [ext_resource type="Script" path="res://Resources/Encounters/Encounter.gd" id="6_h2hkt"]
@@ -32,6 +33,7 @@ size = Vector2(71, 9)
 script = ExtResource("1_s0q1w")
 world_name = "core_2"
 player_path = NodePath("player")
+music = ExtResource("2_vkt2l")
 room_entrances = [NodePath("trigger/room"), NodePath("trigger/room8")]
 
 [node name="image" type="Sprite2D" parent="."]

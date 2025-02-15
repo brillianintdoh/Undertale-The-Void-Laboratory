@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://b1n5sd4yphw2l"]
+[gd_scene load_steps=18 format=3 uid="uid://b1n5sd4yphw2l"]
 
 [ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_fm3ux"]
 [ext_resource type="Texture2D" uid="uid://c2b3j7vl1dxw6" path="res://Game/assets/img/core.png" id="2_6ch78"]
+[ext_resource type="AudioStream" uid="uid://dfqid7tyfeodc" path="res://Game/assets/audio/core.mp3" id="2_nbo6f"]
 [ext_resource type="PackedScene" uid="uid://d4g7r4oj7f4t8" path="res://Overworld/Characters/player_overworld.tscn" id="3_a6maq"]
 [ext_resource type="Script" path="res://Resources/Encounters/Encounter.gd" id="4_gq4uh"]
 [ext_resource type="PackedScene" uid="uid://gyhc83v53iax" path="res://Overworld/Interactions/save.tscn" id="5_iewme"]
@@ -35,6 +36,7 @@ size = Vector2(215, 82)
 script = ExtResource("1_fm3ux")
 world_name = "핫랜드 - 코어 갈림길"
 player_path = NodePath("player")
+music = ExtResource("2_nbo6f")
 room_entrances = [NodePath("trigger/room2"), NodePath("trigger/room3"), NodePath("trigger/room4"), NodePath("trigger/room_lab")]
 
 [node name="image" type="Sprite2D" parent="."]
