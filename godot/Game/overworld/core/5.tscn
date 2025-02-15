@@ -50,12 +50,12 @@ zoom = Vector2(2, 2)
 position = Vector2(23, 23)
 
 [node name="text_trigger" parent="trigger" instance=ExtResource("6_wp4nr")]
-position = Vector2(208, 199)
+position = Vector2(208, 195)
 scale = Vector2(2, 1)
 text = ["* ( 지금 여기 들어갈것이 아닌 샌즈를 찾자 )"]
 
 [node name="text_trigger2" parent="trigger" instance=ExtResource("6_wp4nr")]
-position = Vector2(304, 196)
+position = Vector2(304, 194)
 scale = Vector2(2, 1)
 text = ["* ( 코어 내부 부터 살펴보자 )"]
 

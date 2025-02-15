@@ -1,6 +1,7 @@
 #include "coreNode.h"
 #include "../../env.h"
 #include<godot_cpp/classes/character_body2d.hpp>
+#include<godot_cpp/classes/reference_rect.hpp>
 
 CoreNode::CoreNode() {}
 
@@ -25,7 +26,13 @@ void CoreNode::init() {
         ));
     }else if(name == "core_1") {
         int main1 = sys->flags()["main1"];
-        if(main1) return;
+        ReferenceRect* room_lab = Object::cast_to<ReferenceRect>(get_node_internal("trigger/room_lab"));
+        if(main1) {
+            get_node_internal("trigger/voidwall")->queue_free();
+            room_lab->set_position(Vector2(259, 322));
+            return;
+        }
+
         global->set("player_move", false);
         CharacterBody2D* sans = Object::cast_to<CharacterBody2D>(get_node_internal("sans"));
         call("summontextbox").call("generic", sys->dia().call("from",
@@ -80,7 +87,7 @@ void CoreNode::init() {
                 global->set("player_text_box", false);
             }, 1.3);
         },
-        [this]() {
+        [this, room_lab]() {
             global->set("player_move", true);
             call("summontextbox").call("generic", sys->dia().call("from",
                 Array::make(
@@ -88,6 +95,8 @@ void CoreNode::init() {
                     String::utf8("* 무언가.. 느낌이 안 좋다..")
                 )
             ));
+            get_node_internal("trigger/voidwall")->queue_free();
+            room_lab->set_position(Vector2(259, 322));
             sys->set_flag("main1", true);
         }});
     }
@@ -98,8 +107,8 @@ void CoreNode::voidWall() {
     if(is) {
         call("summontextbox").call("generic", sys->dia().call("from", 
             Array::make(
-                String::utf8("* 여기도.. 안보이는 벽이 있는거 같다.."),
-                String::utf8("* ( 또 다른 길을 찾아야 할거 같다.. )")
+                String::utf8("* 안보이는 벽이 있는거 같다.."),
+                String::utf8("* ( 다른 길을 찾아야 할거 같다.. )")
             )
         ));
     }else {

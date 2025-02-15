@@ -1,0 +1,189 @@
+[gd_scene load_steps=19 format=3 uid="uid://ml1yg7ocmfkt"]
+
+[ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_sgjxh"]
+[ext_resource type="Texture2D" uid="uid://cgl2ly10cs5oe" path="res://Game/assets/img/laboratory.png" id="2_y5hdi"]
+[ext_resource type="Script" path="res://Camera/camera.gd" id="3_54tfa"]
+[ext_resource type="PackedScene" uid="uid://d4g7r4oj7f4t8" path="res://Overworld/Characters/player_overworld.tscn" id="4_cp27g"]
+[ext_resource type="Script" path="res://Resources/Encounters/Encounter.gd" id="5_pk4ra"]
+[ext_resource type="PackedScene" uid="uid://c8yexn6trfd1f" path="res://Game/text_trigger.tscn" id="6_5igiy"]
+[ext_resource type="Script" path="res://Overworld/room_entrance_node.gd" id="7_64spo"]
+[ext_resource type="PackedScene" uid="uid://tl343l587k6h" path="res://Overworld/Interactions/Items/item_interaction.tscn" id="8_r1tp2"]
+[ext_resource type="PackedScene" uid="uid://g6wce27yxejw" path="res://Game/move_trigger.tscn" id="9_cj8fl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n61ts"]
+size = Vector2(7, 54.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r11u0"]
+size = Vector2(90, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnmty"]
+size = Vector2(981, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x08jr"]
+size = Vector2(312, 85)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2b1os"]
+size = Vector2(1203, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6a6tb"]
+size = Vector2(24, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fo3k"]
+size = Vector2(20, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3s85l"]
+size = Vector2(40, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfh4a"]
+size = Vector2(46, 20)
+
+[node name="LaboratoryNode" type="LaboratoryNode" node_paths=PackedStringArray("room_entrances")]
+script = ExtResource("1_sgjxh")
+world_name = "core_9"
+player_path = NodePath("player")
+room_entrances = [NodePath("trigger/room_core")]
+
+[node name="image" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-221, 83)
+scale = Vector2(1.2, 1.02655)
+texture = ExtResource("2_y5hdi")
+region_rect = Rect2(2062, 278, 306, 292)
+metadata/_edit_lock_ = true
+
+[node name="player" parent="." instance=ExtResource("4_cp27g")]
+z_index = 1
+position = Vector2(320, 240)
+Encounters = Array[ExtResource("5_pk4ra")]([])
+
+[node name="camera" type="RemoteTransform2D" parent="player"]
+script = ExtResource("3_54tfa")
+zoom = Vector2(2, 2)
+
+[node name="trigger" type="Node2D" parent="."]
+position = Vector2(23, 23)
+
+[node name="text_trigger" parent="trigger" instance=ExtResource("6_5igiy")]
+position = Vector2(-445, 168)
+scale = Vector2(4, 1)
+text = ["* ( 화면은 더이상 켜지지 않는다.. )"]
+
+[node name="text_trigger2" parent="trigger" instance=ExtResource("6_5igiy")]
+position = Vector2(276, 168)
+scale = Vector2(1.2, 1)
+text = ["* ( 에스컬레이터가 작동하지 않는다 )"]
+
+[node name="text_trigger3" parent="trigger" instance=ExtResource("6_5igiy")]
+position = Vector2(-540, 168)
+scale = Vector2(1.2, 1)
+text = ["* ( 에스컬레이터가 작동하지 않는다 )"]
+
+[node name="text_trigger4" parent="trigger" instance=ExtResource("6_5igiy")]
+position = Vector2(25, 169)
+scale = Vector2(3, 1)
+text = ["* 여기 구멍도 쓸모없어 보인다"]
+
+[node name="experiment_data" parent="trigger" instance=ExtResource("6_5igiy")]
+position = Vector2(-272, 203)
+scale = Vector2(0.5, 0.417)
+text = [" THE CORE... MY CREATION... IT'S PULLING ME IN. I CAN'T... I CAN'T ESCAPE."]
+
+[node name="experiment_data2" parent="trigger" instance=ExtResource("6_5igiy")]
+position = Vector2(-250, 211)
+scale = Vector2(0.5, 0.417)
+text = ["* ( 너무 복잡한 수식 처럼 보인다 )", "* ( 내가 읽을수 없을거 같다 )"]
+
+[node name="experiment_data3" parent="trigger" instance=ExtResource("6_5igiy")]
+position = Vector2(-304, 212)
+scale = Vector2(0.5, 0.417)
+text = [" DARKNESS. ENDLESS DARKNESS.", "BUT I CAN SEE... EVERYTHING. ALL POSSIBILITIES AT ONCE."]
+
+[node name="experiment_data4" parent="trigger" instance=ExtResource("6_5igiy")]
+position = Vector2(-341, 212)
+scale = Vector2(0.5, 0.417)
+text = [" I SEE OTHER WORLDS.", "NOT JUST OUR UNDERGROUND.", "WORLDS WHERE MONSTERS WON THE WAR. WORLDS WHERE WE NEVER EXISTED."]
+
+[node name="room_core" type="ReferenceRect" parent="trigger"]
+offset_left = 344.0
+offset_top = 194.0
+offset_right = 350.0
+offset_bottom = 241.0
+pivot_offset = Vector2(-47, 23)
+script = ExtResource("7_64spo")
+facing_direction = Vector2(1, 0)
+new_room = "res://Game/overworld/core/1.tscn"
+
+[node name="ItemInteraction" parent="trigger" instance=ExtResource("8_r1tp2")]
+position = Vector2(-191, 187)
+scale = Vector2(2, 1)
+discover_text = ["* ( 아직도 냉장고 속에 컵라면이 있다 )", "* 가져갈까?"]
+accept_text = ["* 당신은 [color=yellow]컵라면[/color]을 얻었다"]
+reject_text = Array[ExtResource("5_pk4ra")]([])
+item_id = 8
+
+[node name="voidWall" parent="trigger" instance=ExtResource("9_cj8fl")]
+position = Vector2(334, 217)
+scale = Vector2(0.3, 2.5)
+text = ["* 아무래도 안보이는 벽이 지나간후 막힌거 같다.."]
+action = 14
+
+[node name="voidWall2" parent="trigger" instance=ExtResource("9_cj8fl")]
+position = Vector2(-758, 237)
+scale = Vector2(0.3, 2.5)
+text = ["* 이쪽도 지나갈수는 없는거 같다"]
+action = 14
+
+[node name="static" type="StaticBody2D" parent="."]
+
+[node name="1" type="CollisionShape2D" parent="static"]
+position = Vector2(362.5, 237.875)
+shape = SubResource("RectangleShape2D_n61ts")
+
+[node name="2" type="CollisionShape2D" parent="static"]
+position = Vector2(381, 275.5)
+shape = SubResource("RectangleShape2D_r11u0")
+
+[node name="3" type="CollisionShape2D" parent="static"]
+position = Vector2(380, 206)
+shape = SubResource("RectangleShape2D_r11u0")
+
+[node name="4" type="CollisionShape2D" parent="static"]
+position = Vector2(-64.5, 118)
+shape = SubResource("RectangleShape2D_rnmty")
+
+[node name="5" type="CollisionShape2D" parent="static"]
+position = Vector2(-711, 196.5)
+shape = SubResource("RectangleShape2D_x08jr")
+
+[node name="6" type="CollisionShape2D" parent="static"]
+position = Vector2(-265.5, 284.5)
+shape = SubResource("RectangleShape2D_2b1os")
+
+[node name="7" type="CollisionShape2D" parent="static"]
+position = Vector2(-741, 260)
+shape = SubResource("RectangleShape2D_n61ts")
+
+[node name="8" type="CollisionShape2D" parent="static"]
+position = Vector2(-469, 209.5)
+shape = SubResource("RectangleShape2D_6a6tb")
+
+[node name="9" type="CollisionShape2D" parent="static"]
+position = Vector2(-373, 210)
+shape = SubResource("RectangleShape2D_6a6tb")
+
+[node name="10" type="CollisionShape2D" parent="static"]
+position = Vector2(-333, 209.5)
+shape = SubResource("RectangleShape2D_3fo3k")
+
+[node name="11" type="CollisionPolygon2D" parent="static"]
+polygon = PackedVector2Array(-309, 240, -289, 240, -289, 216, -284, 216, -284, 225, -279, 225, -279, 216, -269, 216, -269, 225, -263, 225, -263, 216, -241, 216, -241, 225, -235, 225, -235, 216, -226, 216, -226, 225, -220, 225, -220, 216, -214, 215, -214, 240, -193, 240, -194, 200, -309, 199)
+
+[node name="12" type="CollisionShape2D" parent="static"]
+position = Vector2(-168, 207.5)
+shape = SubResource("RectangleShape2D_3s85l")
+
+[node name="13" type="CollisionShape2D" parent="static"]
+position = Vector2(-121, 197)
+shape = SubResource("RectangleShape2D_bfh4a")
+
+[connection signal="ready" from="." to="." method="init"]

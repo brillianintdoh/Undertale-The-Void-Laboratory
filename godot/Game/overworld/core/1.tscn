@@ -35,7 +35,7 @@ size = Vector2(215, 82)
 script = ExtResource("1_fm3ux")
 world_name = "핫랜드 - 코어 갈림길"
 player_path = NodePath("player")
-room_entrances = [NodePath("trigger/room2"), NodePath("trigger/room3"), NodePath("trigger/room4")]
+room_entrances = [NodePath("trigger/room2"), NodePath("trigger/room3"), NodePath("trigger/room4"), NodePath("trigger/room_lab")]
 
 [node name="image" type="Sprite2D" parent="."]
 z_index = -1
@@ -86,12 +86,12 @@ shape = SubResource("RectangleShape2D_xxlin")
 position = Vector2(23, 23)
 
 [node name="text_trigger" parent="trigger" instance=ExtResource("7_dwxo3")]
-position = Vector2(213, 210)
+position = Vector2(213, 207)
 scale = Vector2(2, 1)
 text = ["* ( 더이상 읽을 필요 없다 )"]
 
 [node name="text_trigger2" parent="trigger" instance=ExtResource("7_dwxo3")]
-position = Vector2(382, 210)
+position = Vector2(382, 207)
 scale = Vector2(2, 1)
 text = ["* ( 더이상 읽을 필요 없다 )"]
 
@@ -142,10 +142,24 @@ facing_direction = Vector2(0, 1)
 door_id = 4
 new_room = "res://Game/overworld/core/4.tscn"
 
+[node name="room_lab" type="ReferenceRect" parent="trigger"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 259.0
+offset_top = 342.0
+offset_right = 337.0
+offset_bottom = 348.0
+grow_horizontal = 2
+scale = Vector2(0.96, 1)
+pivot_offset = Vector2(39, -9)
+script = ExtResource("8_2yq8u")
+facing_direction = Vector2(0, -1)
+new_room = "res://Game/overworld/lab.tscn"
+
 [node name="voidwall" parent="trigger" instance=ExtResource("9_1sh7g")]
 position = Vector2(299, 332)
 scale = Vector2(4, 0.3)
-required_collider_group = &"player"
 action = 14
 
 [node name="sans" parent="." instance=ExtResource("10_ognhb")]

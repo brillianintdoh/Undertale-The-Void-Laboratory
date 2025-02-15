@@ -57,7 +57,7 @@ Encounters = Array[ExtResource("5_f80t8")]([SubResource("Resource_cukce")])
 position = Vector2(23, 23)
 
 [node name="text_trigger" parent="trigger" instance=ExtResource("6_cofto")]
-position = Vector2(198, 196)
+position = Vector2(198, 192)
 scale = Vector2(2, 1)
 text = ["* ( 더이상 읽을 필요 없다 )"]
 
