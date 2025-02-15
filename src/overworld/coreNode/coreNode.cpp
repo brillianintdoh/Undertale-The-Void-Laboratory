@@ -25,7 +25,7 @@ void CoreNode::init() {
         ));
     }else if(name == "core_1") {
         int main1 = sys->flags()["main1"];
-        if(!main1) return;
+        if(main1) return;
         global->set("player_move", false);
         CharacterBody2D* sans = Object::cast_to<CharacterBody2D>(get_node_internal("sans"));
         call("summontextbox").call("generic", sys->dia().call("from",
