@@ -56,12 +56,12 @@ defense_amount = 0
 [sub_resource type="Resource" id="Resource_1h2q8"]
 script = ExtResource("2_hl63a")
 item_type = 0
-item_name = "눈사람 조각"
+item_name = "시나몬버니"
 weapon_speed = 1.0
 weapon_bars = 1
 weapon_type = 0
 critical_hits = false
-use_message = ["* 당신은 눈사람 조각를 사용했다."]
+use_message = ["* 당신은 시나몬버니를 사용했다."]
 item_information = ["* 시나몬버니 - 체력 22 회복
 * 토끼 모양의 시나몬롤이다."]
 throw_message = ["* 시나몬버니를 버렸다"]
