@@ -63,6 +63,16 @@ zoom = Vector2(2, 2)
 [node name="trigger" type="Node2D" parent="."]
 position = Vector2(23, 23)
 
+[node name="room_core" type="ReferenceRect" parent="trigger"]
+offset_left = 344.0
+offset_top = 194.0
+offset_right = 350.0
+offset_bottom = 241.0
+pivot_offset = Vector2(-47, 23)
+script = ExtResource("7_64spo")
+facing_direction = Vector2(-1, 0)
+new_room = "res://Game/overworld/core/1.tscn"
+
 [node name="text_trigger" parent="trigger" instance=ExtResource("6_5igiy")]
 position = Vector2(-445, 168)
 scale = Vector2(4, 1)
@@ -102,16 +112,6 @@ text = [" DARKNESS. ENDLESS DARKNESS.", "BUT I CAN SEE... EVERYTHING. ALL POSSIB
 position = Vector2(-341, 212)
 scale = Vector2(0.5, 0.417)
 text = [" I SEE OTHER WORLDS.", "NOT JUST OUR UNDERGROUND.", "WORLDS WHERE MONSTERS WON THE WAR. WORLDS WHERE WE NEVER EXISTED."]
-
-[node name="room_core" type="ReferenceRect" parent="trigger"]
-offset_left = 344.0
-offset_top = 194.0
-offset_right = 350.0
-offset_bottom = 241.0
-pivot_offset = Vector2(-47, 23)
-script = ExtResource("7_64spo")
-facing_direction = Vector2(1, 0)
-new_room = "res://Game/overworld/core/1.tscn"
 
 [node name="ItemInteraction" parent="trigger" instance=ExtResource("8_r1tp2")]
 position = Vector2(-191, 187)
