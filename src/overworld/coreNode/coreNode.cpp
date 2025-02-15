@@ -25,8 +25,8 @@ void CoreNode::initEvent() {
     String name = get_name();
     Dictionary flags = sys->flags();
     if(flags["event1"] || flags["main1"]) 
-        camera->call("Void", 10, 5.2, 0.002);
-    else camera->call("Void", 10);
+        camera->call("Void", 0.5, 5.2, 0.002);
+    else camera->call("Void", 0.5);
 
     if(name == "core_9") {
         int event1 = flags["event1"];
