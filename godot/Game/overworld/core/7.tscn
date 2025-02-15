@@ -129,4 +129,5 @@ shape = SubResource("RectangleShape2D_n616l")
 position = Vector2(306, 139)
 shape = SubResource("RectangleShape2D_7r4co")
 
+[connection signal="ready" from="." to="." method="init"]
 [connection signal="cutscene" from="trigger/voidWall" to="." method="voidWall"]

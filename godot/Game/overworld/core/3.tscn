@@ -144,4 +144,5 @@ shape = SubResource("RectangleShape2D_n616l")
 position = Vector2(201.5, 177)
 shape = SubResource("RectangleShape2D_n616l")
 
+[connection signal="ready" from="." to="." method="init"]
 [connection signal="cutscene" from="trigger/event1" to="." method="event1"]

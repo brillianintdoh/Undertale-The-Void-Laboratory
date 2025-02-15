@@ -24,7 +24,7 @@ size = Vector2(167, 117)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n616l"]
 size = Vector2(145, 246)
 
-[node name="core_4" type="Node2D" node_paths=PackedStringArray("room_entrances")]
+[node name="core_4" type="CoreNode" node_paths=PackedStringArray("room_entrances")]
 script = ExtResource("1_qw7n6")
 world_name = "core_4"
 player_path = NodePath("player")
@@ -110,3 +110,5 @@ shape = SubResource("RectangleShape2D_n61ts")
 [node name="3" type="CollisionShape2D" parent="static"]
 position = Vector2(200.5, 241)
 shape = SubResource("RectangleShape2D_n616l")
+
+[connection signal="ready" from="." to="." method="init"]

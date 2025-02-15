@@ -10,4 +10,6 @@ void LaboratoryNode::_bind_methods() {
 }
 
 void LaboratoryNode::init() {
+    if(isEditor) return;
+    camera = Object::cast_to<Camera2D>(global->get("scene_container").get("Camera"));
 }

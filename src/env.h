@@ -2,9 +2,12 @@
 #define ENV_H
 #include "mainNode/mainNode.h"
 #include<godot_cpp/classes/canvas_layer.hpp>
+#include<godot_cpp/classes/audio_stream_player.hpp>
 using namespace godot;
 extern MainNode* sys;
 extern CanvasLayer* global;
+extern AudioStreamPlayer* music;
+extern int isEditor, loopIs;
 enum TextBox {
     DEFAULT,
     SANS,

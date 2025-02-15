@@ -89,6 +89,11 @@ position = Vector2(286, 124)
 scale = Vector2(4, 0.3)
 action = 14
 
+[node name="event2" parent="trigger" instance=ExtResource("7_0k7fi")]
+position = Vector2(286, 216)
+scale = Vector2(3, 2)
+action = 12
+
 [node name="static" type="StaticBody2D" parent="."]
 
 [node name="1" type="CollisionShape2D" parent="static"]
@@ -107,4 +112,6 @@ shape = SubResource("RectangleShape2D_n616l")
 position = Vector2(309, 141.5)
 shape = SubResource("RectangleShape2D_axdj1")
 
+[connection signal="ready" from="." to="." method="init"]
 [connection signal="cutscene" from="trigger/voidWall" to="." method="voidWall"]
+[connection signal="cutscene" from="trigger/event2" to="." method="event2"]

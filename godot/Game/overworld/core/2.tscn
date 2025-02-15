@@ -113,4 +113,5 @@ position = Vector2(157, 244)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_nhc54")
 
+[connection signal="ready" from="." to="." method="init"]
 [connection signal="cutscene" from="trigger/voidwall" to="." method="voidWall"]

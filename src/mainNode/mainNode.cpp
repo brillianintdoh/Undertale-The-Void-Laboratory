@@ -14,6 +14,7 @@ void MainNode::_bind_methods() {
 
 void MainNode::ready() {
     ResourceLoader* loader = ResourceLoader::get_singleton();
+    isEditor = Engine::get_singleton()->is_editor_hint();
     dialogues = loader->load("res://Resources/Dialogues/dialogues.gd");
     sys = Object::cast_to<MainNode>(get_node_internal("."));
 }
@@ -37,4 +38,5 @@ void MainNode::set_flag(String name, Variant v) {
 
 void MainNode::load_global() {
     global = Object::cast_to<CanvasLayer>(get_node_internal("/root/Global"));
+    music = Object::cast_to<AudioStreamPlayer>(global->get("Music"));
 }
