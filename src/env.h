@@ -7,7 +7,7 @@ using namespace godot;
 extern MainNode* sys;
 extern CanvasLayer* global;
 extern AudioStreamPlayer* music;
-extern int isEditor, loopIs;
+extern int isEditor;
 enum TextBox {
     DEFAULT,
     SANS,

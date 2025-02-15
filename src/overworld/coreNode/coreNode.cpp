@@ -3,13 +3,9 @@
 #include<godot_cpp/classes/character_body2d.hpp>
 #include<godot_cpp/classes/reference_rect.hpp>
 
-CoreNode::CoreNode() {
-    loopIs = true;
-}
+CoreNode::CoreNode() {}
 
-CoreNode::~CoreNode() {
-    loopIs = false;
-}
+CoreNode::~CoreNode() {}
 
 void CoreNode::_bind_methods() {
     ClassDB::bind_method(D_METHOD("init"), &CoreNode::init);
