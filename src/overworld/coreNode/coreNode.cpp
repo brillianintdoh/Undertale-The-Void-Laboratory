@@ -25,7 +25,7 @@ void CoreNode::initEvent() {
     String name = get_name();
     Dictionary flags = sys->flags();
     if(flags["event1"] || flags["main1"]) 
-        camera->call("Void", 0.5, 5.2, 0.002);
+        camera->call("Void", 0.5, 5, 0.002);
     else camera->call("Void", 0.5);
 
     if(name == "core_9") {
@@ -80,16 +80,19 @@ void CoreNode::initEvent() {
         [this]() {
             call("summontextbox").call("character", TextBox::SANS, sys->dia().call("from",
                 Array::make(
-                    String::utf8("* 꼬마 여기 있었네.."),
+                    String::utf8("* 왜 여기있어? 꼬맹아..?"),
+                    String::utf8("* 날 찾아다녔다고? 쉽지 않았을 텐데.."),
+                    String::utf8("* 그래도 지금은 별로 반갑지 않네."),
                     String::utf8("* ..."),
-                    String::utf8("* 날 찾고 있었다고?"),
-                    String::utf8("* 흠...."),
-                    String::utf8("* 뭐 어쩔수 없나.."),
-                    String::utf8("* 너도 느꼈을거야 코어 주변이.. 아니 지하세계가 이상해지고 있는걸"),
-                    String::utf8("* 미안해 내가 '그'를 불러 버렸어"),
-                    String::utf8("* 일단 날 따라와 탈출할 방법을 찾아야겠어")
+                    String::utf8("* 알고 있겠지만 뭔가 이상하지 않아?"),
+                    String::utf8("* 코어가... 아니, 모든게 달라지고 있어."),
+                    String::utf8("* 내 실수야. 내가 '그'를 다시 불러내려고 했거든."),
+                    String::utf8("* 근데 이제와서 보니까..."),
+                    String::utf8("* 일단 꼬맹이 날 따라와."),
+                    String::utf8("* 여기 있는 건 안전하지 않아.")
                 )
-            ).call("set_expressions", Array::make(6, 0, 4, 2, 3, 2, 9, 0)));
+            ).call("set_expressions", Array::make(10, 6, 3, 4, 7, 7, 2, 4, 6, 0, 0))
+            .call("set_speed", Array::make(0.08, 0.08, 0.2, 0.2, 0.15, 0.12, 0.25, 0.2, 0.08, 0.08)));
         },
         [this, sans]() {
             global->set("player_text_box", true);
@@ -197,10 +200,14 @@ void CoreNode::event2() {
                 String::utf8("* [color=red]주변은 또 막혀있고 말이야..[/color]"),
                 String::utf8("* [color=red]일단 코어 갈림길로 가볼래? 거기에 있는거 같거든[/color]")
             ));
-            call("summontextbox").call("generic", sys->dia().call("from", text));
+            call("summontextbox").call("generic", 
+                sys->dia().call("from", text).call("set_speed", Array::make(0.3, 0.18, 0.18, 0.2, 0.1))
+            );
         }else {
             text.append(String::utf8("* [color=red]일단 뭐 엘레베이터로 돌아가볼래? 뭔가 느낌이 안좋거든[/color]"));
-            call("summontextbox").call("generic", sys->dia().call("from", text));
+            call("summontextbox").call("generic", 
+                sys->dia().call("from", text).call("set_speed", Array::make(0.3, 0.18, 0.18, 0.1))
+            );
         }
         sys->sequence([this]() { return !global->get("player_text_box"); },
         {[this]() {

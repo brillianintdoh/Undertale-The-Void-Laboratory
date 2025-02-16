@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgs3k783ju2ei"]
+[gd_scene load_steps=13 format=3 uid="uid://cgs3k783ju2ei"]
 
 [ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_6cwhx"]
 [ext_resource type="Texture2D" uid="uid://c2b3j7vl1dxw6" path="res://Game/assets/img/core.png" id="2_il84y"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d4g7r4oj7f4t8" path="res://Overworld/Characters/player_overworld.tscn" id="4_mwjv5"]
 [ext_resource type="Script" path="res://Resources/Encounters/Encounter.gd" id="5_ga2o6"]
 [ext_resource type="Script" path="res://Overworld/room_entrance_node.gd" id="7_o4i60"]
+[ext_resource type="PackedScene" uid="uid://dd758xuvic7xl" path="res://Overworld/Interactions/area_trigger.tscn" id="8_fwkdd"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_qq5qj"]
 
@@ -94,6 +95,11 @@ door_id = 9
 new_room = "res://Game/overworld/core/9.tscn"
 new_room_entrance_id = 8
 
+[node name="event2" parent="trigger" instance=ExtResource("8_fwkdd")]
+position = Vector2(281, 220)
+scale = Vector2(3, 2)
+action = 12
+
 [node name="static" type="StaticBody2D" parent="."]
 
 [node name="1" type="CollisionShape2D" parent="static"]
@@ -109,3 +115,4 @@ position = Vector2(199.5, 239.5)
 shape = SubResource("RectangleShape2D_n616l")
 
 [connection signal="ready" from="." to="." method="init"]
+[connection signal="cutscene" from="trigger/event2" to="." method="event2"]

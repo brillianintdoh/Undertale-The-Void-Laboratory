@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ml1yg7ocmfkt"]
+[gd_scene load_steps=20 format=3 uid="uid://ml1yg7ocmfkt"]
 
 [ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_sgjxh"]
 [ext_resource type="Texture2D" uid="uid://cgl2ly10cs5oe" path="res://Game/assets/img/laboratory.png" id="2_y5hdi"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Overworld/room_entrance_node.gd" id="7_64spo"]
 [ext_resource type="PackedScene" uid="uid://tl343l587k6h" path="res://Overworld/Interactions/Items/item_interaction.tscn" id="8_r1tp2"]
 [ext_resource type="PackedScene" uid="uid://g6wce27yxejw" path="res://Game/move_trigger.tscn" id="9_cj8fl"]
+[ext_resource type="PackedScene" uid="uid://bj6e8xllsfsj4" path="res://Overworld/Characters/sans.tscn" id="10_imi72"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n61ts"]
 size = Vector2(7, 54.25)
@@ -112,6 +113,10 @@ Encounters = Array[ExtResource("5_pk4ra")]([])
 [node name="camera" type="RemoteTransform2D" parent="player"]
 script = ExtResource("3_54tfa")
 zoom = Vector2(2, 2)
+
+[node name="sans" parent="." instance=ExtResource("10_imi72")]
+position = Vector2(320, 275)
+walk_speed = 80
 
 [node name="trigger" type="Node2D" parent="."]
 position = Vector2(23, 23)

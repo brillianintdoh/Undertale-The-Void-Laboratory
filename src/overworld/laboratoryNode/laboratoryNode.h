@@ -17,6 +17,7 @@ namespace godot {
             ~LaboratoryNode();
 
             void init();
+            void initEvent();
     };
 }
 
