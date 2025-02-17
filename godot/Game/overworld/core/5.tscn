@@ -37,7 +37,6 @@ region_rect = Rect2(3025.66, 808, 754.102, 206.214)
 metadata/_edit_lock_ = true
 
 [node name="player" parent="." instance=ExtResource("4_r51y7")]
-z_index = 1
 position = Vector2(320, 240)
 Encounters = Array[ExtResource("5_jhl5u")]([])
 
@@ -71,6 +70,7 @@ new_room = "res://Game/overworld/core/3.tscn"
 new_room_entrance_id = 5
 
 [node name="static" type="StaticBody2D" parent="."]
+z_index = -1
 
 [node name="1" type="CollisionShape2D" parent="static"]
 position = Vector2(250.75, 329.25)

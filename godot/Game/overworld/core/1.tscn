@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b1n5sd4yphw2l"]
+[gd_scene load_steps=17 format=3 uid="uid://b1n5sd4yphw2l"]
 
 [ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_fm3ux"]
 [ext_resource type="Texture2D" uid="uid://c2b3j7vl1dxw6" path="res://Game/assets/img/core.png" id="2_6ch78"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Overworld/room_entrance_node.gd" id="8_2yq8u"]
 [ext_resource type="PackedScene" uid="uid://dd758xuvic7xl" path="res://Overworld/Interactions/area_trigger.tscn" id="9_1sh7g"]
 [ext_resource type="PackedScene" uid="uid://bj6e8xllsfsj4" path="res://Overworld/Characters/sans.tscn" id="10_ognhb"]
-[ext_resource type="Script" path="res://Resources/Dialogues/dialogues.gd" id="11_e1oam"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_qq5qj"]
 
@@ -57,11 +56,11 @@ script = ExtResource("6_nenxh")
 zoom = Vector2(2, 2)
 
 [node name="player" parent="." instance=ExtResource("3_a6maq")]
-z_index = 1
 position = Vector2(320, 221)
 Encounters = Array[ExtResource("4_gq4uh")]([SubResource("Resource_cukce")])
 
 [node name="static" type="StaticBody2D" parent="."]
+z_index = -1
 position = Vector2(321, 251)
 
 [node name="1" type="CollisionShape2D" parent="static"]
@@ -166,7 +165,6 @@ action = 14
 
 [node name="sans" parent="." instance=ExtResource("10_ognhb")]
 position = Vector2(321, 398)
-dialogues = Array[ExtResource("11_e1oam")]([])
 
 [connection signal="ready" from="." to="." method="init"]
 [connection signal="cutscene" from="trigger/voidwall" to="." method="voidWall"]

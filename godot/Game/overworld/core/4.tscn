@@ -47,7 +47,6 @@ script = ExtResource("3_bx3iy")
 zoom = Vector2(2, 2)
 
 [node name="player" parent="." instance=ExtResource("4_rxpdm")]
-z_index = 1
 position = Vector2(308, 289)
 Encounters = Array[ExtResource("5_adlpj")]([SubResource("Resource_cukce")])
 
@@ -100,6 +99,7 @@ new_room = "res://Game/overworld/core/7.tscn"
 new_room_entrance_id = 4
 
 [node name="static" type="StaticBody2D" parent="."]
+z_index = -1
 
 [node name="1" type="CollisionShape2D" parent="static"]
 position = Vector2(427.5, 332.5)

@@ -51,7 +51,6 @@ script = ExtResource("3_l1arr")
 zoom = Vector2(2, 2)
 
 [node name="player" parent="." instance=ExtResource("4_n88h5")]
-z_index = 1
 position = Vector2(308, 289)
 Encounters = Array[ExtResource("5_f80t8")]([SubResource("Resource_cukce")])
 
@@ -110,6 +109,7 @@ scale = Vector2(4, 0.3)
 action = 14
 
 [node name="static" type="StaticBody2D" parent="."]
+z_index = -1
 
 [node name="1" type="CollisionShape2D" parent="static"]
 position = Vector2(425.5, 318.5)

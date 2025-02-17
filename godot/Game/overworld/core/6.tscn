@@ -92,6 +92,7 @@ scale = Vector2(4, 0.3)
 action = 14
 
 [node name="static" type="StaticBody2D" parent="."]
+z_index = -1
 
 [node name="1" type="CollisionShape2D" parent="static"]
 position = Vector2(427, 242)
