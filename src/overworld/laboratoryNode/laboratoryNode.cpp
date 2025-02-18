@@ -1,6 +1,7 @@
 #include "laboratoryNode.h"
 #include "../../env.h"
 #include<godot_cpp/classes/character_body2d.hpp>
+#include<godot_cpp/classes/audio_stream_player.hpp>
 
 LaboratoryNode::LaboratoryNode() {}
 
@@ -50,6 +51,7 @@ void LaboratoryNode::initEvent() {
         },
         [this]() {
             global->set("player_text_box", true);
+            Object::cast_to<AudioStreamPlayer>(get_node_internal("sound/beep"))->play();
             sys->sleep([this]() {
                 camera->call("Void", 0.5, 5.5, 0.002);
                 call("summontextbox").call("character", TextBox::SANS, sys->dia().call("from", 

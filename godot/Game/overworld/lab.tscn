@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ml1yg7ocmfkt"]
+[gd_scene load_steps=21 format=3 uid="uid://ml1yg7ocmfkt"]
 
 [ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_sgjxh"]
 [ext_resource type="Texture2D" uid="uid://cgl2ly10cs5oe" path="res://Game/assets/img/laboratory.png" id="2_y5hdi"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://tl343l587k6h" path="res://Overworld/Interactions/Items/item_interaction.tscn" id="8_r1tp2"]
 [ext_resource type="PackedScene" uid="uid://g6wce27yxejw" path="res://Game/move_trigger.tscn" id="9_cj8fl"]
 [ext_resource type="PackedScene" uid="uid://bj6e8xllsfsj4" path="res://Overworld/Characters/sans.tscn" id="10_imi72"]
+[ext_resource type="AudioStream" uid="uid://dat3sohvf36eg" path="res://Game/assets/audio/beep.mp3" id="11_4043k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n61ts"]
 size = Vector2(7, 54.25)
@@ -192,5 +193,11 @@ position = Vector2(-740, 237)
 scale = Vector2(0.3, 2.5)
 text = ["* ( 이쪽도 지나갈수는 없는거 같다 )"]
 action = 14
+
+[node name="sound" type="Node" parent="."]
+
+[node name="beep" type="AudioStreamPlayer" parent="sound"]
+stream = ExtResource("11_4043k")
+bus = &"SFX"
 
 [connection signal="ready" from="." to="." method="init"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Singletons/scene_container.gd" id="1_pm8hh"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="2_xdoag"]
 [ext_resource type="PackedScene" uid="uid://00l80mhoa7va" path="res://Camera/camera_advanced.tscn" id="3_piyon"]
-[ext_resource type="PackedScene" uid="uid://llwvcsnw2bb4" path="res://Singletons/settings.tscn" id="4_txu81"]
+[ext_resource type="PackedScene" uid="uid://dvnmatwtifn73" path="res://Game/settings.tscn" id="4_yu4mx"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_0mhky"]
 viewport_path = NodePath("SettingsContainer/SubViewport")
@@ -118,7 +118,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("ViewportTexture_w8dkw")
 
-[node name="Settings" parent="SettingsContainer/SubViewport" instance=ExtResource("4_txu81")]
+[node name="Settings" parent="SettingsContainer/SubViewport" instance=ExtResource("4_yu4mx")]
 layer = 100
 
 [node name="Border" type="ReferenceRect" parent="SettingsContainer"]
