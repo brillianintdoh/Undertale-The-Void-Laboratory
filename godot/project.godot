@@ -57,6 +57,7 @@ enabled=PackedStringArray()
 folder_colors={
 "res://Game/": "green",
 "res://Game/assets/": "yellow",
+"res://Game/encounters/": "purple",
 "res://Game/overworld/": "red"
 }
 

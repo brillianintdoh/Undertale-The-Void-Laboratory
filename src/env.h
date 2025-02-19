@@ -6,6 +6,7 @@
 using namespace godot;
 extern MainNode* sys;
 extern CanvasLayer* global;
+extern CanvasLayer* scene_changer;
 extern AudioStreamPlayer* music;
 extern int isEditor;
 enum TextBox {

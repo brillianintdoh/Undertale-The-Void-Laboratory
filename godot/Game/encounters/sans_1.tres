@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=4 format=3 uid="uid://qhn0hqcgois5"]
+
+[ext_resource type="PackedScene" uid="uid://oy7ofdx3wjyy" path="res://Game/encounters/enemy/sans_1.tscn" id="1_rtr6y"]
+[ext_resource type="Script" path="res://Resources/Encounters/Encounter.gd" id="2_qaxyc"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_r382s"]
+
+[resource]
+script = ExtResource("2_qaxyc")
+encounter_name = &"샌즈"
+background = SubResource("ImageTexture_r382s")
+enemies = Array[PackedScene]([ExtResource("1_rtr6y")])
+mercy_options = Array[String](["* 자비"])
+flee_chance = 0.2

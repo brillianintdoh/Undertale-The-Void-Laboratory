@@ -76,37 +76,22 @@ void CoreNode::initEvent() {
         }, [this]() {
             call("summontextbox").call("character", TextBox::SANS, sys->dia().call("from",
                 Array::make(
-                    String::utf8("* 왜 여기있어? 꼬맹아..?"),
-                    String::utf8("* 날 찾아다녔다고? 쉽지 않았을 텐데.."),
-                    String::utf8("* 그래도 지금은 별로 반갑지 않네."),
+                    String::utf8("* 오..."),
+                    String::utf8("* 음 kid 여기 있었네.."),
                     String::utf8("* ..."),
-                    String::utf8("* 알고 있겠지만 뭔가 이상하지 않아?"),
-                    String::utf8("* 코어가... 아니, 모든게 달라지고 있어."),
-                    String::utf8("* 내 실수야. 내가 '그'를 다시 불러내려고 했거든."),
-                    String::utf8("* 근데 이제와서 보니까..."),
-                    String::utf8("* 일단 꼬맹이 날 따라와."),
-                    String::utf8("* 여기 있는 건 안전하지 않아.")
+                    String::utf8("* 뼈밖에서 보니까 반갑네"),
+                    String::utf8("* 꽤 바빠보이던데... Love 15라..."),
+                    String::utf8("* 그나저나 이상하지 않아? 기계는 작동을 안하고..."),
+                    String::utf8("* 아. 근데 말이야, kid..."),
+                    String::utf8("* 내가 여기 있는것도 우연은 아니고..."),
+                    String::utf8("* 지금 당장 이걸 끝내야 해."),
+                    String::utf8("* 그게 나을거야, 꼬맹아")
                 )
-            ).call("set_expressions", Array::make(10, 6, 3, 4, 7, 7, 2, 4, 6, 0, 0))
-            .call("set_speed", Array::make(0.08, 0.08, 0.2, 0.2, 0.15, 0.12, 0.25, 0.2, 0.08, 0.08)));
+            ).call("set_expressions", Array::make(10, 2, 4, 3, 1, 0, 4, 4, 18, 19))
+            .call("set_speed", Array::make(0.1, 0.1)));
         }, [this, sans]() {
-            global->set("player_text_box", true);
-            sans->call("start_walking", Vector2i(0, 1));
-            sys->sleep([this, sans]() {
-                sans->set_position(Vector2(321, 398));
-                global->set("player_text_box", false);
-            }, 1.3);
-        }, [this, room_lab]() {
-            global->set("player_move", true);
-            call("summontextbox").call("generic", sys->dia().call("from",
-                Array::make(
-                    String::utf8("* ...."),
-                    String::utf8("* 무언가.. 느낌이 안 좋다..")
-                )
-            ));
-            get_node_internal("trigger/voidwall")->queue_free();
-            room_lab->set_position(Vector2(259, 322));
             sys->set_flag("main1", true);
+            sys->load_battle("res://Game/encounters/sans_1.tres");
         }});
     }
 }

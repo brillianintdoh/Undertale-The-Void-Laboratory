@@ -2,6 +2,7 @@
 #define MainNode_H
 #include<godot_cpp/classes/control.hpp>
 #include<godot_cpp/classes/gd_script.hpp>
+#include<godot_cpp/classes/resource_loader.hpp>
 #include<functional>
 using namespace std;
 namespace godot {
@@ -13,6 +14,7 @@ namespace godot {
 
         private:
             Ref<GDScript> dialogues;
+            ResourceLoader* loader;
         
         public:
             MainNode();
@@ -32,6 +34,7 @@ namespace godot {
             Variant dia();
             Dictionary flags();
             void set_flag(String name, Variant v);
+            void load_battle(String path);
     };
 }
 
