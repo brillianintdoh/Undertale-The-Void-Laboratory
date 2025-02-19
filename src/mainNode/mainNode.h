@@ -34,7 +34,7 @@ namespace godot {
             Variant dia();
             Dictionary flags();
             void set_flag(String name, Variant v);
-            void load_battle(String path);
+            void load_battle(String path, Vector2 vec = Vector2(48, 452));
     };
 }
 

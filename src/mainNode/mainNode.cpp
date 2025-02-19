@@ -36,8 +36,8 @@ void MainNode::set_flag(String name, Variant v) {
     if(!global->get("first")) global->call("save_game", true);
 }
 
-void MainNode::load_battle(String path) {
-    scene_changer->call("load_battle", scene_changer->get("DEFAULT_BATTLE"), loader->load(path));
+void MainNode::load_battle(String path, Vector2 vec) {
+    scene_changer->call("load_battle", scene_changer->get("DEFAULT_BATTLE"), loader->load(path), true, vec);
 }
 
 void MainNode::load_global() {

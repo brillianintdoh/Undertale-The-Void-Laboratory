@@ -91,7 +91,7 @@ void CoreNode::initEvent() {
             .call("set_speed", Array::make(0.1, 0.1)));
         }, [this, sans]() {
             sys->set_flag("main1", true);
-            sys->load_battle("res://Game/encounters/sans_1.tres");
+            sys->load_battle("res://Game/encounters/sans_1.tres", Vector2(324, 323));
         }});
     }
 }
