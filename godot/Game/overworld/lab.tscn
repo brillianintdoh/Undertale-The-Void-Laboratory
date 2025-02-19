@@ -180,7 +180,7 @@ scale = Vector2(2, 1)
 discover_text = ["* ( 아직도 냉장고 속에 컵라면이 있다 )", "* 가져갈까?"]
 accept_text = ["* 당신은 [color=yellow]컵라면[/color]을 얻었다"]
 reject_text = Array[ExtResource("5_pk4ra")]([])
-item_id = 8
+item_id = 11
 
 [node name="voidWall" parent="trigger" instance=ExtResource("9_cj8fl")]
 position = Vector2(334, 217)

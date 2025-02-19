@@ -10,6 +10,7 @@ MainNode::~MainNode() {}
 void MainNode::_bind_methods() {
     ClassDB::bind_method(D_METHOD("ready"), &MainNode::ready);
     ClassDB::bind_method(D_METHOD("load_global"), &MainNode::load_global);
+    ClassDB::bind_method(D_METHOD("reset"), &MainNode::reset);
 }
 
 void MainNode::ready() {
@@ -39,4 +40,10 @@ void MainNode::set_flag(String name, Variant v) {
 void MainNode::load_global() {
     global = Object::cast_to<CanvasLayer>(get_node_internal("/root/Global"));
     music = Object::cast_to<AudioStreamPlayer>(global->get("Music"));
+}
+
+void MainNode::reset() {
+    global->call("resetgame", false);
+	global->call("check_level_up");
+    global->call_deferred("heal", global->get("player_max_hp"));
 }

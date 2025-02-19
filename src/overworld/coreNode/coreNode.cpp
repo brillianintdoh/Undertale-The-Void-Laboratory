@@ -59,25 +59,21 @@ void CoreNode::initEvent() {
             sans->set_position(Vector2(321, 356));
             sans->call("start_walking", Vector2i(0, -1));
             sys->sleep([this]() { global->set("player_text_box", false); }, 1.3);
-        },
-        [this, sans]() {
+        }, [this, sans]() {
             global->set("player_text_box", true);
             Vector2 player_pos = global->get("player_position");
             Vector2 sans_pos = sans->get_position();
             Vector2 diff = player_pos - sans_pos;
             Vector2i direction;
             
-            if (abs(diff.x) > abs(diff.y)) {
+            if (abs(diff.x) > abs(diff.y))
                 direction = Vector2i(diff.x > 0 ? 1 : -1, 0);
-            } else {
-                direction = Vector2i(0, diff.y > 0 ? 1 : -1);
-            }  
+            else direction = Vector2i(0, diff.y > 0 ? 1 : -1);
             
             sans->call("start_walking", direction);
             sans->call("start_walking");
             sys->sleep([this]() { global->set("player_text_box", false); }, 1);
-        },
-        [this]() {
+        }, [this]() {
             call("summontextbox").call("character", TextBox::SANS, sys->dia().call("from",
                 Array::make(
                     String::utf8("* 왜 여기있어? 꼬맹아..?"),
@@ -93,16 +89,14 @@ void CoreNode::initEvent() {
                 )
             ).call("set_expressions", Array::make(10, 6, 3, 4, 7, 7, 2, 4, 6, 0, 0))
             .call("set_speed", Array::make(0.08, 0.08, 0.2, 0.2, 0.15, 0.12, 0.25, 0.2, 0.08, 0.08)));
-        },
-        [this, sans]() {
+        }, [this, sans]() {
             global->set("player_text_box", true);
             sans->call("start_walking", Vector2i(0, 1));
             sys->sleep([this, sans]() {
                 sans->set_position(Vector2(321, 398));
                 global->set("player_text_box", false);
             }, 1.3);
-        },
-        [this, room_lab]() {
+        }, [this, room_lab]() {
             global->set("player_move", true);
             call("summontextbox").call("generic", sys->dia().call("from",
                 Array::make(
@@ -146,7 +140,7 @@ void CoreNode::event1() {
             Array::make(
                 String::utf8("* !?"), String::utf8("* 앞으로 갈수가 없다..?"),
                 String::utf8("* 무언가 앞에 안보이는 벽이있는거 같다..?"),
-                String::utf8("* 샌즈를 찾아야겠다")
+                String::utf8("* 무언가 느낌이 안 좋다..")
             )
         ));
         sys->set_flag("is", 1);
@@ -178,8 +172,7 @@ void CoreNode::event1() {
         }});
     }else call("summontextbox").call("generic", sys->dia().call("from",
         Array::make(
-            String::utf8("* 여기도 막혀있다..."), String::utf8("* 샌즈를 찾으면 탈출할수 있을지도.."),
-            String::utf8("* 샌즈를 찾아야겠다")
+            String::utf8("* 여기도 막혀있다...")
         )
     ));
     global->set("player_can_move", true);
@@ -192,8 +185,8 @@ void CoreNode::event2() {
         global->set("player_move", false);
         Array text = Array::make(
             String::utf8("* [color=red]흠.. 뭔가 이상하네..[/color]"),
-            String::utf8("* [color=red]그렇지 않아? 파트너? 불살인데도 불구하고 내가 나오고[/color]"),
-            String::utf8("* [color=red]넌 지금 분명 프리스크이여야 하는데 말이지..[/color]")
+            String::utf8("* [color=red]그렇지 않아? 파트너? 내가 벌써 나오고..[/color]"),
+            String::utf8("* [color=red]( 너는 아직도 영혼을 안줬고... :) )[/color]")
         );
         if(is == 1) {
             text.append_array(Array::make(

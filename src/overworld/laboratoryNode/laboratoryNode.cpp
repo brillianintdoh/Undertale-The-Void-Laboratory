@@ -34,8 +34,7 @@ void LaboratoryNode::initEvent() {
             call("summontextbox").call("character", TextBox::SANS, sys->dia().call("from", 
                 Array::make(String::utf8("* 여기까지 왔으니 이제 돌아가."))
             ).call("set_expressions", Array::make(4)));
-        },
-        [this, sans]() {
+        }, [this, sans]() {
             sans->call("start_walking", Vector2i(0, -1));
             sans->call("start_walking", Vector2i(0, 0));
             call("summontextbox").call("character", TextBox::SANS, sys->dia().call("from", 
@@ -47,9 +46,9 @@ void LaboratoryNode::initEvent() {
                     String::utf8("* 얼마나 많은 타임라인을 망쳐놨지?"),
                     String::utf8("* 나는 기억하고 있어 너가 수많은 리셋으로 이르킨 일들..")
                 )
-            ).call("set_expressions", Array::make(4, 19, 20, 5, 15, 17)));
-        },
-        [this]() {
+            ).call("set_expressions", Array::make(4, 19, 20, 5, 15, 17))
+            .call("set_speed", Array::make(0.08, 0.08, 0.08, 0.08, 0.08, 0.11)));
+        }, [this]() {
             global->set("player_text_box", true);
             Object::cast_to<AudioStreamPlayer>(get_node_internal("sound/beep"))->play();
             sys->sleep([this]() {
@@ -58,10 +57,10 @@ void LaboratoryNode::initEvent() {
                     Array::make(
                         String::utf8("* ...제길")
                     )
-                ).call("set_expressions", Array::make(18)));
+                ).call("set_expressions", Array::make(18))
+                .call("set_speed", Array::make(0.2)));
             }, 3);
-        },
-        [this]() {
+        }, [this]() {
             global->set("player_text_box", true);
             sys->sleep([this]() {
                 call("summontextbox").call("character", TextBox::SANS, sys->dia().call("from", 
@@ -71,6 +70,7 @@ void LaboratoryNode::initEvent() {
                     )
                 ).call("set_expressions", Array::make(4, 21)));
             }, 2);
+        }, [this]() {
         }});
     }, 1.5);
 }

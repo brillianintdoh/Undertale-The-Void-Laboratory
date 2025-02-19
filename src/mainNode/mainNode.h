@@ -18,6 +18,12 @@ namespace godot {
             MainNode();
             ~MainNode();
 
+            void reset();
+            void load_global();
+
+            void ready();
+            void _process(double delta) override;
+
             void system(double delta);
             void sleep(function<void()> fun, double cool);
             void loop(function<int(double delta)> fun);
@@ -25,11 +31,7 @@ namespace godot {
 
             Variant dia();
             Dictionary flags();
-
-            void load_global();
             void set_flag(String name, Variant v);
-            void ready();
-            void _process(double delta) override;
     };
 }
 

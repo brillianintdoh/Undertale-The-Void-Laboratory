@@ -51,12 +51,12 @@ position = Vector2(23, 23)
 [node name="text_trigger" parent="trigger" instance=ExtResource("6_wp4nr")]
 position = Vector2(208, 195)
 scale = Vector2(2, 1)
-text = ["* ( 지금 여기 들어갈것이 아닌 샌즈를 찾자 )"]
+text = ["* ( 문이 열리지 않는다 다른 길을 찾아야 할거 같다 )"]
 
 [node name="text_trigger2" parent="trigger" instance=ExtResource("6_wp4nr")]
 position = Vector2(304, 194)
 scale = Vector2(2, 1)
-text = ["* ( 코어 내부 부터 살펴보자 )"]
+text = ["* ( ? 엘레베이터가 작동을 안한다 )"]
 
 [node name="room3" type="ReferenceRect" parent="trigger"]
 offset_left = -511.0

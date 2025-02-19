@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dc10754oip7a4"]
+[gd_scene load_steps=17 format=3 uid="uid://dc10754oip7a4"]
 
 [ext_resource type="Theme" uid="uid://s3o3wkvbt3ej" path="res://Themes/DTMono24.tres" id="1_aygu1"]
 [ext_resource type="Script" path="res://Singletons/global.gd" id="1_n7axi"]
@@ -13,29 +13,92 @@ weapon_speed = 1.0
 weapon_bars = 1
 weapon_type = 0
 critical_hits = false
-use_message = ["* You used the Item!"]
-item_information = ["* Item - Heals 0 hp 
-* This means this item has no description or is the default item."]
-throw_message = ["* You threw the Item!"]
+use_message = ["* ?", "* 당신은 막대기를 장착했다"]
+item_information = ["* 막대기 - 1
+* 겉보기와 달리 위협적이지 않다"]
+throw_message = ["* 당신은 막대기를 바닥에 버렸다"]
 heal_amount = 0
-attack_amount = 1
+attack_amount = 0
 defense_amount = 0
 
 [sub_resource type="Resource" id="Resource_uar4h"]
 script = ExtResource("2_hl63a")
-item_type = 2
+item_type = 0
 item_name = "반창고"
 weapon_speed = 1.0
 weapon_bars = 1
 weapon_type = 0
 critical_hits = false
-use_message = ["* You used the Item!"]
-item_information = ["* Item - Heals 0 hp 
-* This means this item has no description or is the default item."]
-throw_message = ["* You threw the Item!"]
+use_message = ["* 당신은 반창고를 사용했다"]
+item_information = ["* 반창고 - 10 hp 회복
+* 이미 여러 번 붙였던 것이다"]
+throw_message = ["* 반창고를 버렸다"]
+heal_amount = 10
+attack_amount = 0
+defense_amount = 0
+
+[sub_resource type="Resource" id="Resource_xkv8p"]
+script = ExtResource("2_hl63a")
+item_type = 1
+item_name = "빈 권총"
+weapon_speed = 3.0
+weapon_bars = 4
+weapon_type = 5
+critical_hits = true
+use_message = ["* 당신은 빈 권총을 착용했다"]
+item_information = ["* 빈 권총 - 12
+* 골동품 리볼버다. 총알은 없다. ", "* 정확한 공격이 아니면 주는 피해가 적다."]
+throw_message = ["* 당신은 빈 권총을 버렸다"]
+heal_amount = 0
+attack_amount = 12
+defense_amount = 0
+
+[sub_resource type="Resource" id="Resource_48edw"]
+script = ExtResource("2_hl63a")
+item_type = 2
+item_name = "카우보이 모자"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* 당신은 카우보이 모자를 착용했다"]
+item_information = ["* 카우보이 모자 -12", "* 전투로 낡은 이 모자엔 턱수염이 딱 어울릴 텐데. 공격력도 5 올려준다."]
+throw_message = ["* 당신은 카우보이 모자를 버렸다"]
+heal_amount = 0
+attack_amount = 5
+defense_amount = 12
+
+[sub_resource type="Resource" id="Resource_de5jg"]
+script = ExtResource("2_hl63a")
+item_type = 1
+item_name = "진짜 칼"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* [color=red]이제서야.[/color]"]
+item_information = ["* 진짜 칼 - 99
+* 드디어 찾았다!"]
+throw_message = ["* 당신은 진짜 칼은 버렸다", "* [color=red]...[/color]"]
+heal_amount = 0
+attack_amount = 99
+defense_amount = 0
+
+[sub_resource type="Resource" id="Resource_tevc4"]
+script = ExtResource("2_hl63a")
+item_type = 0
+item_name = "로켓"
+weapon_speed = 1.0
+weapon_bars = 1
+weapon_type = 0
+critical_hits = false
+use_message = ["* [color=red]원래 자리로.[/color]"]
+item_information = ["* 로켓 - 99
+* 고동치는 게 느껴진다."]
+throw_message = ["* 당신은 로켓을 버렸다", "* [color=red]...[/color]"]
 heal_amount = 0
 attack_amount = 0
-defense_amount = 1
+defense_amount = 99
 
 [sub_resource type="Resource" id="Resource_p5cqk"]
 script = ExtResource("2_hl63a")
@@ -66,22 +129,6 @@ item_information = ["* 시나몬버니 - 체력 22 회복
 * 토끼 모양의 시나몬롤이다."]
 throw_message = ["* 시나몬버니를 버렸다"]
 heal_amount = 45
-attack_amount = 0
-defense_amount = 0
-
-[sub_resource type="Resource" id="Resource_kqj2e"]
-script = ExtResource("2_hl63a")
-item_type = 0
-item_name = "꿈"
-weapon_speed = 1.0
-weapon_bars = 1
-weapon_type = 0
-critical_hits = false
-use_message = ["* 당신은 꿈을 사용했다"]
-item_information = ["* 꿈 - 체력 17 회복
-* '의지'의 목적"]
-throw_message = ["* 꿈를 버렸다"]
-heal_amount = 17
 attack_amount = 0
 defense_amount = 0
 
@@ -154,7 +201,7 @@ defense_amount = 0
 process_mode = 3
 layer = 10
 script = ExtResource("1_n7axi")
-item_list = Array[ExtResource("2_hl63a")]([SubResource("Resource_08wbk"), SubResource("Resource_uar4h"), SubResource("Resource_p5cqk"), SubResource("Resource_1h2q8"), SubResource("Resource_kqj2e"), SubResource("Resource_hhcrm"), SubResource("Resource_xu28o"), SubResource("Resource_qshho"), SubResource("Resource_47v3q")])
+item_list = Array[ExtResource("2_hl63a")]([SubResource("Resource_08wbk"), SubResource("Resource_uar4h"), SubResource("Resource_xkv8p"), SubResource("Resource_48edw"), SubResource("Resource_de5jg"), SubResource("Resource_tevc4"), SubResource("Resource_p5cqk"), SubResource("Resource_1h2q8"), SubResource("Resource_hhcrm"), SubResource("Resource_xu28o"), SubResource("Resource_qshho"), SubResource("Resource_47v3q")])
 
 [node name="Info" type="RichTextLabel" parent="."]
 anchors_preset = 15
