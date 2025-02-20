@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://oy7ofdx3wjyy"]
+[gd_scene load_steps=116 format=3 uid="uid://b703gr7hdvi8n"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_hw11j"]
 [ext_resource type="Script" path="res://Resources/Dialogues/dialogues.gd" id="2_ix7pl"]
@@ -18,8 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://c0uqne66eaud" path="res://Game/assets/sprite/head/sans_9.tres" id="11_pgdd5"]
 [ext_resource type="Texture2D" uid="uid://v2uk8ex2yh8f" path="res://Enemies/dust/default_dust.png" id="11_v1ils"]
 [ext_resource type="Texture2D" uid="uid://bw02r33khpc4w" path="res://particles/smoke.png" id="12_7yjv6"]
+[ext_resource type="Texture2D" uid="uid://bmhg3dbp4yw2j" path="res://Game/assets/sprite/head/sans_10.tres" id="12_qne1c"]
+[ext_resource type="Texture2D" uid="uid://dhtaucuu8qrwd" path="res://Game/assets/sprite/body/sans_4.tres" id="13_i8uh2"]
 [ext_resource type="PackedScene" uid="uid://d3j04wql8n25c" path="res://Battle/Misc/dialogue.tscn" id="13_sxux0"]
 [ext_resource type="Texture2D" uid="uid://cm5va8tkbbc8t" path="res://Battle/Misc/Bubble/bubble_3.png" id="14_0iqx4"]
+[ext_resource type="Texture2D" uid="uid://bf7e166xmtvs3" path="res://Game/assets/sprite/body/sans_3.tres" id="15_qmogq"]
 [ext_resource type="Texture2D" uid="uid://be5xqdr4doast" path="res://Game/assets/sprite/death.png" id="21_7sbhf"]
 
 [sub_resource type="Resource" id="Resource_rhwy5"]
@@ -355,6 +358,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_pgdd5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qne1c")
 }],
 "loop": false,
 "name": &"heads",
@@ -416,8 +422,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_6wfd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_i8uh2")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -483,6 +492,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_jasgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_qmogq")
 }],
 "loop": true,
 "name": &"default",
@@ -1232,5 +1244,7 @@ scale = Vector2(1.48235, 1.57561)
 texture = ExtResource("21_7sbhf")
 region_enabled = true
 region_rect = Rect2(81, 241, 68, 82)
+
+[connection signal="timeout" from="Timer" to="." method="end_throws"]
 
 [editable path="Dialogue"]

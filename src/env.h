@@ -24,5 +24,15 @@ enum TextBox {
     TEMMIE,
     TORIEL,
 };
+enum Bullet {
+	MOVEMENT_VELOCITY,
+	MOVEMENT_TWEEN
+};
+enum AttackMack {
+	ABSOLUTE_CLIP,
+	ABSOLUTE,
+	RELATIVE_BOX_CLIP,
+	RELATIVE_BOX,
+};
 
 #endif

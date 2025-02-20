@@ -26,9 +26,24 @@ void MainNode::sequence(function<int()> isFun, vector<function<void()>> funs) {
                 current_index++;
                 return false;
             }
-            current_index = 0;  // 리셋
-            return true;  // 모든 액션 완료
+            return true;
         }else return false;
+    });
+}
+
+void MainNode::time_loop(function<void(double delta)> fun, double time) {
+    double* total_time = new double(0);
+    
+    loop([fun, time, total_time](double delta) {
+        *total_time += delta;
+        
+        if(*total_time >= time) {
+            delete total_time;
+            return true;
+        }
+
+        fun(delta);
+        return false;
     });
 }
 

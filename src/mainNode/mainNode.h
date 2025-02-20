@@ -29,6 +29,7 @@ namespace godot {
             void system(double delta);
             void sleep(function<void()> fun, double cool);
             void loop(function<int(double delta)> fun);
+            void time_loop(function<void(double delta)> fun, double time);
             void sequence(function<int()> isFun, vector<function<void()>> funs);
 
             Variant dia();

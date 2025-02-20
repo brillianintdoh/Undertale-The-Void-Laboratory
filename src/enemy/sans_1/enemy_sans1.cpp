@@ -2,26 +2,37 @@
 #include "../../env.h"
 #include<godot_cpp/classes/property_tweener.hpp>
 #include<godot_cpp/classes/tween.hpp>
+#include<godot_cpp/classes/resource_loader.hpp>
 
 Enemy_SANS1::Enemy_SANS1() {}
 
 Enemy_SANS1::~Enemy_SANS1() {}
 
 void Enemy_SANS1::_bind_methods() {
-    ClassDB::bind_method(D_METHOD("_on_get_turn"), Enemy_SANS1::get_turn);
+    ClassDB::bind_method(D_METHOD("_on_get_turn"), &Enemy_SANS1::get_turn);
+    ClassDB::bind_method(D_METHOD("_on_throws", "dir", "power"), &Enemy_SANS1::_on_throws, DEFVAL(Vector2(0, 1)), DEFVAL(10));
+    ClassDB::bind_method(D_METHOD("end_throws"), &Enemy_SANS1::end_throws);
 }
 
 void Enemy_SANS1::_ready() {
     if(isEditor) return;
     Main = Object::cast_to<Node2D>(get("Main"));
+    Box = Object::cast_to<Node2D>(get("Box"));
     Soul = Object::cast_to<CharacterBody2D>(get("Soul"));
     Attacks = Object::cast_to<BackBufferCopy>(get("Attacks"));
+    Dialogue = Object::cast_to<Control>(get("Dialogue"));
     backScene = Object::cast_to<TextureRect>(Main->get("backScene"));
 
     sprites = Object::cast_to<Node2D>(get_node_internal("Sprites"));
     body = Object::cast_to<AnimatedSprite2D>(get_node_internal("Sprites/Idle/body"));
     leg = Object::cast_to<AnimatedSprite2D>(get_node_internal("Sprites/Idle/leg"));
     head = Object::cast_to<AnimatedSprite2D>(get_node_internal("Sprites/Idle/body/head"));
+    camera = Object::cast_to<RemoteTransform2D>(get("Camera"));
+    throw_head = Object::cast_to<AnimatedSprite2D>(get_node_internal("Sprites/Throw/head"));
+    throw_timer = Object::cast_to<Timer>(get_node_internal("Timer"));
+    AnimStates = Object::cast_to<AnimationNodeStateMachinePlayback>(get_node_internal("States")->get("parameters/playback"));
+
+    mainAttack = ResourceLoader::get_singleton()->load("res://Game/main_attacks.tscn");
 
     sprites->set_z_index(102);
     body->set_frame(8);
@@ -50,6 +61,60 @@ void Enemy_SANS1::get_turn() {
             sys->sleep([this]() {
                 head->set_frame(19);
             }, 2);
+            sys->sleep([this]() {
+                head->set_frame(20);
+                camera_pro(2, "zoom", Vector2(2,2));
+                camera_pro(2, "rotation", 0.6);
+                camera_pro(0.1, "position", Vector2(320, 150));
+                sys->sleep([this]() {
+                    camera_pro(0.5);
+                    head->set_frame(21);
+                    body->set_frame(9);
+                    leg->set_frame(3);
+                    leg->set_position(Vector2(17.5, 22.5));
+                    backScene->set_visible(false);
+                    Box->call("change_size", Vector2(140, 140));
+                    Node* a = Object::cast_to<Node>(Attacks->call("add_attack", mainAttack));
+                    a->connect("throws", Callable(this, "_on_throws"));
+                    a->call("start_attack");
+                }, 3);
+            }, 6);
         }, 17);
     }
+}
+
+void Enemy_SANS1::_on_throws(Vector2 dir, int power) {
+    throw_timer->start();
+    AnimStates->stop();
+    String key = "";
+    if(dir == Vector2(-1, 0))
+        key = "throw_left";
+    else if(dir == Vector2(1, 0))
+        key = "throw_right";
+    else if(dir == Vector2(0, 1))
+        key = "throw_down";
+    else if(dir == Vector2(0, -1))
+        key = "throw_up";
+
+    AnimStates->travel(key); 
+    throw_head->play("crazy", true);
+
+    sys->sleep([this, dir, power]() {
+        Soul->call("set_gravity_direction", dir, true);
+        Soul->set("gravity_multiplier", power);
+    }, 0.15);
+}
+
+void Enemy_SANS1::end_throws() {
+    throw_head->set_animation("heads");
+}
+
+void Enemy_SANS1::camera_pro(float time, String key, Variant value) {
+    Tween* tween = Object::cast_to<Tween>(create_tween().ptr());
+    // zoom, position, rotation
+    if(key == "all") {
+        tween->tween_property(camera, "zoom", Vector2(1,1), time);
+        tween->tween_property(camera, "position", Vector2(320, 240), time);
+        tween->tween_property(camera, "rotation", 0, time);
+    }else tween->tween_property(camera, key, value, time);
 }
