@@ -34,5 +34,15 @@ enum AttackMack {
 	RELATIVE_BOX_CLIP,
 	RELATIVE_BOX,
 };
+enum SoulMode {
+	RED,
+	BLUE,
+	ORANGE,
+	YELLOW,
+	GREEN,
+	CYAN,
+	PURPLE,
+	DISABLE_MOVEMENT,
+};
 
 #endif

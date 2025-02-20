@@ -1,4 +1,5 @@
 #include "enemy_sans1.h"
+#include "../../mainAttacks/mainAttacks.h"
 #include "../../env.h"
 #include<godot_cpp/classes/property_tweener.hpp>
 #include<godot_cpp/classes/tween.hpp>
@@ -74,9 +75,9 @@ void Enemy_SANS1::get_turn() {
                     leg->set_position(Vector2(17.5, 22.5));
                     backScene->set_visible(false);
                     Box->call("change_size", Vector2(140, 140));
-                    Node* a = Object::cast_to<Node>(Attacks->call("add_attack", mainAttack));
+                    MainAttacks* a = Object::cast_to<MainAttacks>(Attacks->call("add_attack", mainAttack));
                     a->connect("throws", Callable(this, "_on_throws"));
-                    a->call("start_attack");
+                    a->sans_1();
                 }, 3);
             }, 6);
         }, 17);

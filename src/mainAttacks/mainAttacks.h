@@ -2,6 +2,7 @@
 #define MainAttacks_H
 #include<godot_cpp/classes/node.hpp>
 #include<godot_cpp/classes/character_body2d.hpp>
+#include "../env.h"
 namespace godot {
     class MainAttacks : public Node {
         GDCLASS(MainAttacks, Node);
@@ -20,8 +21,10 @@ namespace godot {
 
             void _ready() override;
 
-            void start_attack();
-            CharacterBody2D* create_bone(int mack);
+            void sans_1();
+
+            CharacterBody2D* create_bone(AttackMack mack);
+            CharacterBody2D* create_blaster(AttackMack mack);
     };
 }
 
