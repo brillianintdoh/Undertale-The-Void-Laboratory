@@ -30,7 +30,7 @@ void MainAttacks::sans_1() {
                 CharacterBody2D* bl = create_blaster(AttackMack::ABSOLUTE);
                 Vector2 Sv = Soul->get_position();
                 bl->set_position(Vector2(Sv.x, -100));
-                bl->call("fire", Vector2(Sv.x, 100), 1.5, 0.7, 0.5);
+                bl->call("fire", Vector2(Sv.x, 100), 1.5, 0.7, 0.8);
 
                 CharacterBody2D* b1 = create_bone(AttackMack::RELATIVE_BOX_CLIP);
                 b1->set_rotation_degrees(-90);
