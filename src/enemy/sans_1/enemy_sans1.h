@@ -15,6 +15,7 @@ namespace godot {
             static void _bind_methods();
 
         private:
+            int is;
             Node2D* Main;
             Node2D* Box;
             CharacterBody2D* Soul;

@@ -37,7 +37,7 @@ void MainNode::set_flag(String name, Variant v) {
 }
 
 void MainNode::load_battle(String path, Vector2 vec) {
-    scene_changer->call("load_battle", scene_changer->get("DEFAULT_BATTLE"), loader->load(path), true, vec);
+    scene_changer->call("load_battle", "res://Game/battle.tscn", loader->load(path), true, vec);
 }
 
 void MainNode::load_global() {

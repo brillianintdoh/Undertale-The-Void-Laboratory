@@ -58,29 +58,47 @@ void Enemy_SANS1::get_turn() {
             }, 7);
         }, 3);
         sys->sleep([this]() {
-            head->set_frame(18);
-            sys->sleep([this]() {
-                head->set_frame(19);
-            }, 2);
-            sys->sleep([this]() {
-                head->set_frame(20);
-                camera_pro(2, "zoom", Vector2(2,2));
-                camera_pro(2, "rotation", 0.6);
-                camera_pro(0.1, "position", Vector2(320, 150));
-                sys->sleep([this]() {
-                    camera_pro(0.5);
-                    head->set_frame(21);
-                    body->set_frame(9);
-                    leg->set_frame(3);
-                    leg->set_position(Vector2(17.5, 22.5));
-                    backScene->set_visible(false);
-                    Box->call("change_size", Vector2(140, 140));
-                    MainAttacks* a = Object::cast_to<MainAttacks>(Attacks->call("add_attack", mainAttack));
-                    a->connect("throws", Callable(this, "_on_throws"));
-                    a->sans_1();
-                }, 3);
-            }, 6);
+            is = true;
+            sys->sequence([this]() { return is; }, {
+                [this]() {
+                    is = false;
+                    head->set_frame(18);
+                    sys->sleep([this]() {
+                        head->set_frame(19);
+                    }, 2);
+                    sys->sleep([this]() { is = true; }, 6);
+                },
+                [this]() {
+                    is = false;
+                    head->set_frame(20);
+                    camera_pro(2, "zoom", Vector2(2,2));
+                    camera_pro(2, "rotation", 0.6);
+                    camera_pro(0.1, "position", Vector2(320, 150));
+                    sys->sleep([this]() {
+                        camera_pro(0.5);
+                        head->set_frame(21);
+                        body->set_frame(9);
+                        leg->set_frame(3);
+                        leg->set_position(Vector2(17.5, 22.5));
+                        backScene->set_visible(false);
+                        Box->call("change_size", Vector2(140, 140));
+                        
+                        MainAttacks* a = Object::cast_to<MainAttacks>(Attacks->call("add_attack", mainAttack));
+                        a->connect("throws", Callable(this, "_on_throws"));
+                        a->sans_1();
+                        sys->sleep([this]() { is = true; }, 20.1);
+                    }, 3);
+                },
+                [this]() {
+                    head->set_frame(22);
+                    body->set_frame(10);
+                    leg->set_frame(0);
+                    leg->set_position(Vector2(21, 16));
+                }
+            });
         }, 17);
+    }else if(turnNumber == 1) {
+        Soul->call("set_mode", SoulMode::RED);
     }
 }
 

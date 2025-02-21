@@ -26,7 +26,8 @@ void MainNode::sequence(function<int()> isFun, vector<function<void()>> funs) {
                 current_index++;
                 return false;
             }
-            return true;
+            current_index = 0;  // 리셋
+            return true;  // 모든 액션 완료
         }else return false;
     });
 }

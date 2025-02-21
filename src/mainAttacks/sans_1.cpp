@@ -30,7 +30,7 @@ void MainAttacks::sans_1() {
                 CharacterBody2D* bl = create_blaster(AttackMack::ABSOLUTE);
                 Vector2 Sv = Soul->get_position();
                 bl->set_position(Vector2(Sv.x, -100));
-                bl->call("fire", Vector2(Sv.x, 100), 1.5, 0.7, 0.8);
+                bl->call("fire", Vector2(Sv.x, 100), 1.5, 0.3, 0.7);
 
                 CharacterBody2D* b1 = create_bone(AttackMack::RELATIVE_BOX_CLIP);
                 b1->set_rotation_degrees(-90);
@@ -53,4 +53,26 @@ void MainAttacks::sans_1() {
             }else time += delta;
         }, 10);
     }, 10.1);
+    sys->sleep([this]() {
+        Box->call("change_size", Vector2(300, 300));
+        sys->time_loop([this](double delta) {
+            static double time = 3.2;
+            static Vector2 pos = Vector2();
+            if(time >= 3.2) {
+                time = 0;
+                for(int i = 0; i < 4; i++) {
+                    CharacterBody2D* bl = create_blaster(AttackMack::ABSOLUTE);
+                    float angle = i * (Math_PI / 4.0); 
+                    
+                    Vector2 pos_bl = pos + Vector2(cos(angle), sin(angle)) * 200;
+                    bl->set_position(pos_bl);
+                    bl->set_rotation(angle + Math_PI);
+                    
+                    bl->call("fire", pos, 1.5, 0.5, 1);
+                }
+            }else time += delta;
+            pos = Soul->get_position();
+        }, 10);
+        sys->sleep([this]() { call("end_attack"); }, 10.2);
+    }, 20.5);
 }

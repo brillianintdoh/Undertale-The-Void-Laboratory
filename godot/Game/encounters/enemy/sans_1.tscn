@@ -1,9 +1,6 @@
-[gd_scene load_steps=116 format=3 uid="uid://b703gr7hdvi8n"]
+[gd_scene load_steps=106 format=3 uid="uid://b703gr7hdvi8n"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_hw11j"]
-[ext_resource type="Script" path="res://Resources/Dialogues/dialogues.gd" id="2_ix7pl"]
-[ext_resource type="Script" path="res://Resources/Dialogues/dialogue.gd" id="3_xp1c0"]
-[ext_resource type="Script" path="res://Resources/Dialogues/pause.gd" id="4_3jjir"]
 [ext_resource type="Script" path="res://Resources/Enemies/EnemyState.gd" id="5_xhtdm"]
 [ext_resource type="Script" path="res://Resources/Enemies/Act.gd" id="6_hgq6g"]
 [ext_resource type="Texture2D" uid="uid://cpcpbncmm3ati" path="res://Enemies/sans_raw.png" id="7_ut4uo"]
@@ -14,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cln7xk3b84edm" path="res://Game/assets/sprite/head/sans_7.tres" id="9_cea8c"]
 [ext_resource type="AudioStream" uid="uid://dtoo70e1wko8r" path="res://sfx/snd_vaporized.wav" id="9_xewfm"]
 [ext_resource type="Texture2D" uid="uid://b5m03ib1e4ulq" path="res://Game/assets/sprite/head/sans_8.tres" id="10_4lbnh"]
+[ext_resource type="Texture2D" uid="uid://15snk3rimuqp" path="res://Game/assets/sprite/head/sans_3.tres" id="10_7kmej"]
 [ext_resource type="Shader" uid="uid://5h6o16kson3k" path="res://Enemies/dust/undertale_dust.tres" id="10_r3la5"]
 [ext_resource type="Texture2D" uid="uid://c0uqne66eaud" path="res://Game/assets/sprite/head/sans_9.tres" id="11_pgdd5"]
 [ext_resource type="Texture2D" uid="uid://v2uk8ex2yh8f" path="res://Enemies/dust/default_dust.png" id="11_v1ils"]
@@ -22,48 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://dhtaucuu8qrwd" path="res://Game/assets/sprite/body/sans_4.tres" id="13_i8uh2"]
 [ext_resource type="PackedScene" uid="uid://d3j04wql8n25c" path="res://Battle/Misc/dialogue.tscn" id="13_sxux0"]
 [ext_resource type="Texture2D" uid="uid://cm5va8tkbbc8t" path="res://Battle/Misc/Bubble/bubble_3.png" id="14_0iqx4"]
+[ext_resource type="Texture2D" uid="uid://b1mivm0slee4h" path="res://Game/assets/sprite/body/sans_5.tres" id="15_hv5o3"]
 [ext_resource type="Texture2D" uid="uid://bf7e166xmtvs3" path="res://Game/assets/sprite/body/sans_3.tres" id="15_qmogq"]
 [ext_resource type="Texture2D" uid="uid://be5xqdr4doast" path="res://Game/assets/sprite/death.png" id="21_7sbhf"]
-
-[sub_resource type="Resource" id="Resource_rhwy5"]
-script = ExtResource("4_3jjir")
-pause_index = 4
-pause_duration = 0.5
-
-[sub_resource type="Resource" id="Resource_8elpn"]
-script = ExtResource("4_3jjir")
-pause_index = 6
-pause_duration = 1.0
-
-[sub_resource type="Resource" id="Resource_wdijk"]
-script = ExtResource("3_xp1c0")
-dialog_text = "test
-123"
-dialog_speed = 0.08
-dialog_expressions = Array[int]([0, 0])
-pauses = Array[ExtResource("4_3jjir")]([SubResource("Resource_rhwy5"), SubResource("Resource_8elpn")])
-
-[sub_resource type="Resource" id="Resource_vh3oq"]
-script = ExtResource("2_ix7pl")
-dialogues = Array[ExtResource("3_xp1c0")]([SubResource("Resource_wdijk")])
-
-[sub_resource type="Resource" id="Resource_kunsu"]
-script = ExtResource("3_xp1c0")
-dialog_text = "Spare Dialogue"
-dialog_speed = 0.08
-dialog_expressions = Array[int]([4, 1])
-pauses = Array[ExtResource("4_3jjir")]([])
-
-[sub_resource type="Resource" id="Resource_sa26r"]
-script = ExtResource("3_xp1c0")
-dialog_text = "pls spare."
-dialog_speed = 0.08
-dialog_expressions = Array[int]([2, 0])
-pauses = Array[ExtResource("4_3jjir")]([])
-
-[sub_resource type="Resource" id="Resource_611tx"]
-script = ExtResource("2_ix7pl")
-dialogues = Array[ExtResource("3_xp1c0")]([SubResource("Resource_kunsu"), SubResource("Resource_sa26r")])
 
 [sub_resource type="Resource" id="Resource_18lvj"]
 script = ExtResource("6_hgq6g")
@@ -76,16 +35,6 @@ Description = ["* 샌즈 1 ATK 1 DEF
 script = ExtResource("5_xhtdm")
 Acts = Array[ExtResource("6_hgq6g")]([SubResource("Resource_18lvj")])
 Sparable = false
-
-[sub_resource type="Resource" id="Resource_obkgt"]
-script = ExtResource("6_hgq6g")
-Act = "* Check"
-Description = ["* Spare!"]
-
-[sub_resource type="Resource" id="Resource_hxxkl"]
-script = ExtResource("5_xhtdm")
-Acts = Array[ExtResource("6_hgq6g")]([SubResource("Resource_obkgt")])
-Sparable = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sd4a3"]
 atlas = ExtResource("7_ut4uo")
@@ -361,6 +310,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_qne1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7kmej")
 }],
 "loop": false,
 "name": &"heads",
@@ -495,6 +447,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("15_qmogq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_hv5o3")
 }],
 "loop": true,
 "name": &"default",
@@ -1105,13 +1060,12 @@ script = ExtResource("1_hw11j")
 enemy_name = "샌즈"
 isFirstTurn = true
 dodging = true
-dialogues = Array[ExtResource("2_ix7pl")]([SubResource("Resource_vh3oq"), SubResource("Resource_611tx")])
-flavour_text = PackedStringArray("* 샌즈가 싸움을 걸었다")
+flavour_text = PackedStringArray("* 전투가 시작된다")
 rewards = {
-"exp": 1000000,
-"gold": 100000
+"exp": 0,
+"gold": 0
 }
-enemy_states = Array[ExtResource("5_xhtdm")]([SubResource("Resource_gi6a1"), SubResource("Resource_hxxkl")])
+enemy_states = Array[ExtResource("5_xhtdm")]([SubResource("Resource_gi6a1")])
 
 [node name="Sprites" type="Node2D" parent="."]
 z_as_relative = false
