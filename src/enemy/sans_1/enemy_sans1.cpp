@@ -1,5 +1,4 @@
 #include "enemy_sans1.h"
-#include "../../mainAttacks/mainAttacks.h"
 #include "../../env.h"
 #include<godot_cpp/classes/property_tweener.hpp>
 #include<godot_cpp/classes/tween.hpp>
@@ -21,7 +20,6 @@ void Enemy_SANS1::_ready() {
     Box = Object::cast_to<Node2D>(get("Box"));
     Soul = Object::cast_to<CharacterBody2D>(get("Soul"));
     Attacks = Object::cast_to<BackBufferCopy>(get("Attacks"));
-    Dialogue = Object::cast_to<Control>(get("Dialogue"));
     backScene = Object::cast_to<TextureRect>(Main->get("backScene"));
 
     sprites = Object::cast_to<Node2D>(get_node_internal("Sprites"));
@@ -83,9 +81,9 @@ void Enemy_SANS1::get_turn() {
                         backScene->set_visible(false);
                         Box->call("change_size", Vector2(140, 140));
                         
-                        MainAttacks* a = Object::cast_to<MainAttacks>(Attacks->call("add_attack", mainAttack));
-                        a->connect("throws", Callable(this, "_on_throws"));
-                        a->sans_1();
+                        attack = Object::cast_to<MainAttacks>(Attacks->call("add_attack", mainAttack));
+                        attack->connect("throws", Callable(this, "_on_throws"));
+                        attack->sans_1();
                         sys->sleep([this]() { is = true; }, 20.1);
                     }, 3);
                 },
@@ -94,6 +92,17 @@ void Enemy_SANS1::get_turn() {
                     body->set_frame(10);
                     leg->set_frame(0);
                     leg->set_position(Vector2(21, 16));
+                    sys->sleep([this]() {
+                        call("play_dialogue", 0);
+                        sys->sequence([this]() { return !global->get("battle_text_box"); },
+                        {[this]() {
+                            head->set_frame(3);
+                            body->set_frame(0);
+                        },
+                        [this]() {
+                            attack->call("end_attack");
+                        }});
+                    }, 10.5);
                 }
             });
         }, 17);

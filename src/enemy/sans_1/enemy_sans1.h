@@ -7,6 +7,7 @@
 #include<godot_cpp/classes/remote_transform2d.hpp>
 #include<godot_cpp/classes/animation_node_state_machine_playback.hpp>
 #include<godot_cpp/classes/timer.hpp>
+#include "../../mainAttacks/mainAttacks.h"
 namespace godot {
     class Enemy_SANS1 : public CharacterBody2D {
         GDCLASS(Enemy_SANS1, CharacterBody2D);
@@ -20,9 +21,9 @@ namespace godot {
             Node2D* Box;
             CharacterBody2D* Soul;
             BackBufferCopy* Attacks;
-            Control* Dialogue;
             TextureRect* backScene;
             AnimationNodeStateMachinePlayback* AnimStates;
+            MainAttacks* attack;
 
             Node2D* sprites;
             AnimatedSprite2D* body;

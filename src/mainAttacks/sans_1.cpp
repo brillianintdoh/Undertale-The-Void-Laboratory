@@ -57,22 +57,20 @@ void MainAttacks::sans_1() {
         Box->call("change_size", Vector2(300, 300));
         sys->time_loop([this](double delta) {
             static double time = 3.2;
-            static Vector2 pos = Vector2();
             if(time >= 3.2) {
                 time = 0;
                 for(int i = 0; i < 4; i++) {
                     CharacterBody2D* bl = create_blaster(AttackMack::ABSOLUTE);
                     float angle = i * (Math_PI / 4.0); 
+                    Vector2 center = Soul->get_position();
                     
-                    Vector2 pos_bl = pos + Vector2(cos(angle), sin(angle)) * 200;
-                    bl->set_position(pos_bl);
-                    bl->set_rotation(angle + Math_PI);
+                    Vector2 pos = center + Vector2(cos(angle), sin(angle)) * 200;
+                    bl->set_position(pos);
+                    bl->set_rotation(angle + Math_PI);  
                     
-                    bl->call("fire", pos, 1.5, 0.5, 1);
+                    bl->call("fire", center, 1.5, 0.5, 1.3);
                 }
             }else time += delta;
-            pos = Soul->get_position();
         }, 10);
-        sys->sleep([this]() { call("end_attack"); }, 10.2);
     }, 20.5);
 }

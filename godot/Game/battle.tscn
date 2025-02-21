@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd2h8fi8777cd"]
+[gd_scene load_steps=11 format=3 uid="uid://bd2h8fi8777cd"]
 
 [ext_resource type="Script" path="res://Battle/battle.gd" id="1_u8l6a"]
-[ext_resource type="Resource" uid="uid://cxu6iatwdxlye" path="res://Resources/Encounters/EncounterTest.tres" id="2_1wnyv"]
 [ext_resource type="PackedScene" uid="uid://0nraaqapf5jy" path="res://Battle/Backgrounds/background.tscn" id="3_080qo"]
 [ext_resource type="PackedScene" uid="uid://dqju025dnhuna" path="res://Battle/hud.tscn" id="4_4t66a"]
 [ext_resource type="PackedScene" uid="uid://3mahpp3h1cx4" path="res://Battle/Box/BattleBox.tscn" id="5_wfsb3"]
@@ -16,7 +15,6 @@ texture_mode = 1
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_u8l6a")
-encounter = ExtResource("2_1wnyv")
 
 [node name="Background" parent="." instance=ExtResource("3_080qo")]
 
@@ -34,6 +32,7 @@ position = Vector2(317, 240)
 [node name="BattleBox" parent="." instance=ExtResource("5_wfsb3")]
 unique_name_in_owner = true
 z_index = -1
+mercytexts = ["* 당신은 자비를 배풀었다", "* 당신은 도망쳤다", "* 당신은 도망치지 못했습니다."]
 wintext = "* 당신은 승리했다 :)
 * %s EXP와 %s 골드를 획득했다."
 
