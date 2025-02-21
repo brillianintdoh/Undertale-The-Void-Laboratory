@@ -77,7 +77,6 @@ void Enemy_SANS1::get_turn() {
                         head->set_frame(21);
                         body->set_frame(9);
                         leg->set_frame(3);
-                        leg->set_position(Vector2(17.5, 22.5));
                         backScene->set_visible(false);
                         Box->call("change_size", Vector2(140, 140));
                         
@@ -91,7 +90,6 @@ void Enemy_SANS1::get_turn() {
                     head->set_frame(22);
                     body->set_frame(10);
                     leg->set_frame(0);
-                    leg->set_position(Vector2(21, 16));
                     sys->sleep([this]() {
                         call("play_dialogue", 0);
                         sys->sequence([this]() { return !global->get("battle_text_box"); },
