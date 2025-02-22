@@ -1,12 +1,14 @@
 #include "mainNode.h"
 using namespace godot;
+struct sleepFunction {
+    function<void()> fun;
+    double cool;
+    double time;
+};
 
-vector<function<void()>> sleepFuns;
-vector<double> sleepCool, sleepTime;
+vector<sleepFunction> sleepFuns;
 void MainNode::sleep(function<void()> fun, double cool) {
-    sleepFuns.push_back(fun);
-    sleepCool.push_back(cool);
-    sleepTime.push_back(0);
+    sleepFuns.push_back({fun, cool, 0});
 }
 
 vector<function<int(double delta)>> loopFuns;
@@ -48,16 +50,23 @@ void MainNode::time_loop(function<void(double delta)> fun, double time) {
     });
 }
 
+void MainNode::clear_system() {
+    for(int i=0; i < sleepFuns.size(); i++) {
+        sleepFuns.erase(sleepFuns.begin() + i);
+    }
+    for(int i=0; i < loopFuns.size(); i++) {
+        loopFuns.erase(loopFuns.begin() + i);
+    }
+}
+
 void MainNode::system(double delta) {
     int i1 = 0;
-    for(auto fun : sleepFuns) {
-        if(sleepCool[i1] <= sleepTime[i1]) {
-            fun();
-            sleepCool.erase(sleepCool.begin() + i1);
-            sleepTime.erase(sleepTime.begin() + i1);
+    for(auto& fun : sleepFuns) {
+        if(fun.cool <= fun.time) {
+            fun.fun();
             sleepFuns.erase(sleepFuns.begin() + i1);
         }else {
-            sleepTime[i1]+=delta;
+            fun.time+=delta;
             i1++;
         }
     }

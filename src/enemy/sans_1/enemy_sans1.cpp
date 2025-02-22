@@ -1,5 +1,6 @@
 #include "enemy_sans1.h"
 #include "../../env.h"
+#include "../../mainAttacks/mainAttacks.h"
 #include<godot_cpp/classes/property_tweener.hpp>
 #include<godot_cpp/classes/tween.hpp>
 #include<godot_cpp/classes/resource_loader.hpp>
@@ -78,12 +79,14 @@ void Enemy_SANS1::get_turn() {
                         body->set_frame(9);
                         leg->set_frame(3);
                         backScene->set_visible(false);
+                        sprites->set_z_index(0);
                         Box->call("change_size", Vector2(140, 140));
                         
-                        attack = Object::cast_to<MainAttacks>(Attacks->call("add_attack", mainAttack));
+                        MainAttacks* attack = Object::cast_to<MainAttacks>(Attacks->call("add_attack", mainAttack));
                         attack->connect("throws", Callable(this, "_on_throws"));
-                        attack->sans_1();
-                        sys->sleep([this]() { is = true; }, 20.1);
+                        attack->set_type(PartType::SANS_1);
+                        Attacks->call("start_attack", 0);
+                        sys->sleep([this]() { is = true; }, 24);
                     }, 3);
                 },
                 [this]() {
@@ -96,11 +99,9 @@ void Enemy_SANS1::get_turn() {
                         {[this]() {
                             head->set_frame(3);
                             body->set_frame(0);
-                        },
-                        [this]() {
-                            attack->call("end_attack");
+                            Attacks->call("end_attack", 0);
                         }});
-                    }, 10.5);
+                    }, 11);
                 }
             });
         }, 17);

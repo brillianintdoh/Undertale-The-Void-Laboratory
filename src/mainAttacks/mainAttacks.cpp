@@ -6,6 +6,7 @@ MainAttacks::MainAttacks() {}
 MainAttacks::~MainAttacks() {}
 
 void MainAttacks::_bind_methods() {
+    ClassDB::bind_method(D_METHOD("start_attack"), &MainAttacks::start_attack);
     ADD_SIGNAL(MethodInfo("throws",
         PropertyInfo(Variant::VECTOR2, "direction"),
         PropertyInfo(Variant::INT, "power")
@@ -17,6 +18,15 @@ void MainAttacks::_ready() {
     Main = Object::cast_to<Node2D>(get("Main"));
     Box = Object::cast_to<Node2D>(get("Box"));
     Soul = Object::cast_to<CharacterBody2D>(get("Soul"));
+}
+
+void MainAttacks::start_attack() {
+    if(type == PartType::SANS_1)
+        sans_1();
+}
+
+void MainAttacks::set_type(PartType type) {
+    this->type = type;
 }
 
 CharacterBody2D* MainAttacks::create_bone(AttackMack mack) {

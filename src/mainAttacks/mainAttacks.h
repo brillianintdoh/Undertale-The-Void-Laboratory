@@ -3,6 +3,10 @@
 #include<godot_cpp/classes/node.hpp>
 #include<godot_cpp/classes/character_body2d.hpp>
 #include "../env.h"
+enum PartType {
+    SANS_1
+};
+
 namespace godot {
     class MainAttacks : public Node {
         GDCLASS(MainAttacks, Node);
@@ -11,6 +15,7 @@ namespace godot {
             static void _bind_methods();
 
         private:
+            PartType type;
             Node2D* Main;
             Node2D* Box;
             CharacterBody2D* Soul;
@@ -18,6 +23,9 @@ namespace godot {
         public:
             MainAttacks();
             ~MainAttacks();
+
+            void start_attack();
+            void set_type(PartType type);
 
             void _ready() override;
 

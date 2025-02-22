@@ -8,6 +8,7 @@ MainNode::~MainNode() {}
 
 void MainNode::_bind_methods() {
     ClassDB::bind_method(D_METHOD("ready"), &MainNode::ready);
+    ClassDB::bind_method(D_METHOD("clear_system"), &MainNode::clear_system);
     ClassDB::bind_method(D_METHOD("load_global"), &MainNode::load_global);
     ClassDB::bind_method(D_METHOD("reset"), &MainNode::reset);
 }

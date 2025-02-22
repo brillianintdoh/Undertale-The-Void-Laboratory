@@ -26,6 +26,7 @@ namespace godot {
             void ready();
             void _process(double delta) override;
 
+            void clear_system();
             void system(double delta);
             void sleep(function<void()> fun, double cool);
             void loop(function<int(double delta)> fun);
