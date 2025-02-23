@@ -3,9 +3,9 @@
 void MainAttacks::sans_1() {
     emit_signal("throws", Vector2(0, 1));
 
-    sys->time_loop([this](double delta) {
-        static double time = 1.5;
-        if(time >= 1.5) {
+    double* time = new double(1.5);
+    sys->time_loop([this, time](double delta) {
+        if(*time >= 1.5) {
             CharacterBody2D* b = create_bone(AttackMack::ABSOLUTE);
             b->set_rotation_degrees(180);
             b->set_position(Vector2(120, 400));
@@ -18,15 +18,15 @@ void MainAttacks::sans_1() {
             b2->call("fire", Vector2(220, 400), Bullet::MOVEMENT_TWEEN, 160);
             b2->call("tween_height", 70, 1.1);
             sys->sleep([this, b, b2]() { b->queue_free(); b2->queue_free(); }, 1.8);
-            time = 0;
-        }else time += delta;
+            *time = 0;
+        }else *time += delta;
     }, 10);
     sys->sleep([this]() {
         Soul->call("set_mode", SoulMode::RED);
         Box->call("change_size", Vector2(200, 140));
-        sys->time_loop([this](double delta) {
-            static double time = 1.5;
-            if(time >= 1.5) {
+        double* time = new double(1.5);
+        sys->time_loop([this, time](double delta) {
+            if(*time >= 1.5) {
                 CharacterBody2D* bl = create_blaster(AttackMack::ABSOLUTE);
                 Vector2 Sv = Soul->get_position();
                 bl->set_position(Vector2(Sv.x, -100));
@@ -49,8 +49,8 @@ void MainAttacks::sans_1() {
                 b2->call("fire", pos2, Bullet::MOVEMENT_TWEEN, 85);
 
                 sys->sleep([this, b1, b2]() { b1->queue_free(); b2->queue_free(); }, 1.3);
-                time = 0;
-            }else time += delta;
+                *time = 0;
+            }else *time += delta;
         }, 10);
         sys->sleep([this]() {
             CharacterBody2D* b = create_bone(AttackMack::ABSOLUTE_CLIP);
@@ -67,14 +67,13 @@ void MainAttacks::sans_1() {
             b2->call("fire", Vector2(220, 400), Bullet::MOVEMENT_TWEEN, 160);
             b2->call("tween_height", 150, 0);
             sys->sleep([this, b, b2]() { b->queue_free(); b2->queue_free(); }, 1.8);
-        }, 11);
+        }, 10.5);
     }, 10.1);
     sys->sleep([this]() {
-        Box->call("change_size", Vector2(430, 220));
-        sys->time_loop([this](double delta) {
-            static double time = 2.2;
-            if(time >= 2.2) {
-                time = 0;
+        Box->call("change_size", Vector2(430, 210));
+        double* time = new double(2.2);
+        sys->time_loop([this, time](double delta) {
+            if(*time >= 2.2) {
                 for(int i = 0; i < 4; i++) {
                     CharacterBody2D* bl = create_blaster(AttackMack::ABSOLUTE);
                     float angle = i * (Math_PI / 4.0); 
@@ -86,7 +85,8 @@ void MainAttacks::sans_1() {
                     
                     bl->call("fire", center, 1.5, 0.5, 1.3);
                 }
-            }else time += delta;
+                *time = 0;
+            }else *time += delta;
         }, 10);
     }, 24.5);
 }
