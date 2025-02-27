@@ -44,6 +44,7 @@ void MainNode::load_battle(String path, Vector2 vec) {
 void MainNode::load_global() {
     global = Object::cast_to<CanvasLayer>(get_node_internal("/root/Global"));
     scene_changer = Object::cast_to<CanvasLayer>(get_node_internal("/root/OverworldSceneChanger"));
+    audio_player = get_node_internal("/root/AudioPlayer");
     music = Object::cast_to<AudioStreamPlayer>(global->get("Music"));
 }
 

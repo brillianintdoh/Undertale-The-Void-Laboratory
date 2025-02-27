@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://b703gr7hdvi8n"]
+[gd_scene load_steps=116 format=3 uid="uid://b703gr7hdvi8n"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_hw11j"]
 [ext_resource type="Script" path="res://Resources/Dialogues/dialogues.gd" id="2_2yvgq"]
@@ -44,6 +44,28 @@ pauses = Array[ExtResource("4_aetut")]([])
 [sub_resource type="Resource" id="Resource_netus"]
 script = ExtResource("2_2yvgq")
 dialogues = Array[ExtResource("3_cfqs1")]([SubResource("Resource_gq74l"), SubResource("Resource_0sdob")])
+
+[sub_resource type="Resource" id="Resource_2hcit"]
+script = ExtResource("3_cfqs1")
+dialog_text = "kid 미안하지만.. 넌"
+dialog_speed = 0.08
+dialog_expressions = Array[int]([4, -1])
+pauses = Array[ExtResource("4_aetut")]([])
+
+[sub_resource type="Resource" id="Resource_j1siq"]
+script = ExtResource("2_2yvgq")
+dialogues = Array[ExtResource("3_cfqs1")]([SubResource("Resource_2hcit")])
+
+[sub_resource type="Resource" id="Resource_36ao7"]
+script = ExtResource("3_cfqs1")
+dialog_text = "!"
+dialog_speed = 0.08
+dialog_expressions = Array[int]([10, -1])
+pauses = Array[ExtResource("4_aetut")]([])
+
+[sub_resource type="Resource" id="Resource_qo42r"]
+script = ExtResource("2_2yvgq")
+dialogues = Array[ExtResource("3_cfqs1")]([SubResource("Resource_36ao7")])
 
 [sub_resource type="Resource" id="Resource_18lvj"]
 script = ExtResource("6_hgq6g")
@@ -1081,7 +1103,7 @@ script = ExtResource("1_hw11j")
 enemy_name = "샌즈"
 isFirstTurn = true
 dodging = true
-dialogues = Array[ExtResource("2_2yvgq")]([SubResource("Resource_netus")])
+dialogues = Array[ExtResource("2_2yvgq")]([SubResource("Resource_netus"), SubResource("Resource_j1siq"), SubResource("Resource_qo42r")])
 flavour_text = PackedStringArray("* 전투가 시작된다")
 rewards = {
 "exp": 0,

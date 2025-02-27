@@ -109,8 +109,7 @@ weapon_bars = 1
 weapon_type = 0
 critical_hits = false
 use_message = ["* 당신은 파이를 사용했다"]
-item_information = ["* 파이 - 체력 999 회복
-* 파이중에 한조각", "* 버터스카치 시나몬 파이 한 조각이다."]
+item_information = ["* 파이중에 한조각", "* 버터스카치 시나몬 파이 한 조각이다."]
 throw_message = ["* 파이를 버렸다"]
 heal_amount = 999
 attack_amount = 0

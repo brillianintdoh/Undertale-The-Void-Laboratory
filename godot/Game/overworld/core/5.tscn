@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bruiakq5o3bkk"]
+[gd_scene load_steps=14 format=3 uid="uid://bruiakq5o3bkk"]
 
 [ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_rf65y"]
+[ext_resource type="AudioStream" uid="uid://dph02o2t1w2la" path="res://Game/assets/audio/core.wav" id="2_5dvu2"]
 [ext_resource type="Texture2D" uid="uid://c2b3j7vl1dxw6" path="res://Game/assets/img/core.png" id="2_ukacc"]
 [ext_resource type="Script" path="res://Camera/camera.gd" id="3_vohb8"]
 [ext_resource type="PackedScene" uid="uid://d4g7r4oj7f4t8" path="res://Overworld/Characters/player_overworld.tscn" id="4_r51y7"]
@@ -25,6 +26,7 @@ size = Vector2(513, 125.5)
 script = ExtResource("1_rf65y")
 world_name = "핫랜드 - 코어의 끝"
 player_path = NodePath("player")
+music = ExtResource("2_5dvu2")
 room_entrances = [NodePath("trigger/room3")]
 
 [node name="image" type="Sprite2D" parent="."]

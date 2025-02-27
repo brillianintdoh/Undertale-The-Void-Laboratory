@@ -107,6 +107,13 @@ void Enemy_SANS1::get_turn() {
         }, 17);
     }else if(turnNumber == 1) {
         Soul->call("set_mode", SoulMode::RED);
+        call("play_dialogue", 1);
+        double* time = new double(0.8);
+        sys->sequence([this]() { return !global->get("battle_text_box"); },
+        {[this, time]() {
+            call("play_dialogue", 2);
+            audio_player->call("play", "beep");
+        }});
     }
 }
 
