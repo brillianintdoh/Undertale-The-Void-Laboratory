@@ -1278,7 +1278,7 @@ position = Vector2(-179, -68)
 scale = Vector2(1.48235, 1.57561)
 texture = ExtResource("21_7sbhf")
 region_enabled = true
-region_rect = Rect2(81, 241, 68, 82)
+region_rect = Rect2(84, 240, 68, 80)
 
 [connection signal="timeout" from="Timer" to="." method="end_throws"]
 
