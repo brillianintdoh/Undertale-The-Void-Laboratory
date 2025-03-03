@@ -108,11 +108,35 @@ void Enemy_SANS1::get_turn() {
     }else if(turnNumber == 1) {
         Soul->call("set_mode", SoulMode::RED);
         call("play_dialogue", 1);
-        double* time = new double(0.8);
+        double* time = new double(0.2);
         sys->sequence([this]() { return !global->get("battle_text_box"); },
         {[this, time]() {
             call("play_dialogue", 2);
             audio_player->call("play", "beep");
+            backScene->set_visible(true);
+            backScene->set_modulate(Color(1, 1, 1, 0.35));
+            
+            sys->time_loop([this, time](double delta) {
+                if(*time >= 0.2) {
+                    *time = 0;
+                    Tween* shakeEffect = Object::cast_to<Tween>(create_tween().ptr());
+                    shakeEffect->set_loops(3);
+                    shakeEffect->tween_property(camera, "rotation", 0.1, 0.2);
+                    shakeEffect->tween_property(camera, "rotation", -0.1, 0.2);
+                    
+                    camera_pro(0.1, "position", Vector2(325, 245));
+                    sys->sleep([this]() {
+                        camera_pro(0.1, "position", Vector2(315, 235));
+                    }, 0.1);
+                }else *time += delta;
+            }, 10);
+        },
+        [this]() {
+            call("play_dialogue", 3);
+        },
+        [this]() {
+            audio_player->call("stop_audio", "beep");
+            scene_changer->call("load_cached_overworld_scene");
         }});
     }
 }

@@ -1,6 +1,6 @@
 [configuration]
 
-entry_symbol = "mainAttacks_main_init"
+entry_symbol = "register_types_main_init"
 compatibility_minimum = "4.1"
 
 [libraries]

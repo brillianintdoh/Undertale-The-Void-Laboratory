@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://b703gr7hdvi8n"]
+[gd_scene load_steps=122 format=3 uid="uid://b703gr7hdvi8n"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_hw11j"]
 [ext_resource type="Script" path="res://Resources/Dialogues/dialogues.gd" id="2_2yvgq"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cm5va8tkbbc8t" path="res://Battle/Misc/Bubble/bubble_3.png" id="14_0iqx4"]
 [ext_resource type="Texture2D" uid="uid://b1mivm0slee4h" path="res://Game/assets/sprite/body/sans_5.tres" id="15_hv5o3"]
 [ext_resource type="Texture2D" uid="uid://bf7e166xmtvs3" path="res://Game/assets/sprite/body/sans_3.tres" id="15_qmogq"]
+[ext_resource type="Texture2D" uid="uid://bcs22ipqay0qb" path="res://Game/assets/sprite/body/sans_6.tres" id="19_wy4li"]
 [ext_resource type="Texture2D" uid="uid://be5xqdr4doast" path="res://Game/assets/sprite/death.png" id="21_7sbhf"]
 
 [sub_resource type="Resource" id="Resource_gq74l"]
@@ -66,6 +67,38 @@ pauses = Array[ExtResource("4_aetut")]([])
 [sub_resource type="Resource" id="Resource_qo42r"]
 script = ExtResource("2_2yvgq")
 dialogues = Array[ExtResource("3_cfqs1")]([SubResource("Resource_36ao7")])
+
+[sub_resource type="Resource" id="Resource_l4tmp"]
+script = ExtResource("3_cfqs1")
+dialog_text = "??"
+dialog_speed = 0.08
+dialog_expressions = Array[int]([10, -1])
+pauses = Array[ExtResource("4_aetut")]([])
+
+[sub_resource type="Resource" id="Resource_poopq"]
+script = ExtResource("3_cfqs1")
+dialog_text = "음... 좀 심각하네..."
+dialog_speed = 0.08
+dialog_expressions = Array[int]([2, 11])
+pauses = Array[ExtResource("4_aetut")]([])
+
+[sub_resource type="Resource" id="Resource_xe0n5"]
+script = ExtResource("3_cfqs1")
+dialog_text = "..."
+dialog_speed = 0.08
+dialog_expressions = Array[int]([4, 11])
+pauses = Array[ExtResource("4_aetut")]([])
+
+[sub_resource type="Resource" id="Resource_k6ioe"]
+script = ExtResource("3_cfqs1")
+dialog_text = "어쩔수 없지 일단 휴전하자"
+dialog_speed = 0.08
+dialog_expressions = Array[int]([1, 1])
+pauses = Array[ExtResource("4_aetut")]([])
+
+[sub_resource type="Resource" id="Resource_7iwm7"]
+script = ExtResource("2_2yvgq")
+dialogues = Array[ExtResource("3_cfqs1")]([SubResource("Resource_l4tmp"), SubResource("Resource_poopq"), SubResource("Resource_xe0n5"), SubResource("Resource_k6ioe")])
 
 [sub_resource type="Resource" id="Resource_18lvj"]
 script = ExtResource("6_hgq6g")
@@ -493,6 +526,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("15_hv5o3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_wy4li")
 }],
 "loop": true,
 "name": &"default",
@@ -1103,7 +1139,7 @@ script = ExtResource("1_hw11j")
 enemy_name = "샌즈"
 isFirstTurn = true
 dodging = true
-dialogues = Array[ExtResource("2_2yvgq")]([SubResource("Resource_netus"), SubResource("Resource_j1siq"), SubResource("Resource_qo42r")])
+dialogues = Array[ExtResource("2_2yvgq")]([SubResource("Resource_netus"), SubResource("Resource_j1siq"), SubResource("Resource_qo42r"), SubResource("Resource_7iwm7")])
 flavour_text = PackedStringArray("* 전투가 시작된다")
 rewards = {
 "exp": 0,
